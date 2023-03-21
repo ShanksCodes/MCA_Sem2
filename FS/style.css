@@ -1,0 +1,10 @@
+*{
+    background-color: aquamarine;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,1 @@
+ctrl+L to select current line, then ctrl c and ctrv v for copy paste
