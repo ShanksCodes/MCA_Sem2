@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-void sortNum(int[],int size); 
-void binarySearch(int[],int size, int key); //for all occurences
+int binarySearch(int[],int size, int key); //for all occurences
 
 
 int main() {
@@ -10,57 +9,52 @@ int main() {
    int size;
    int key;
    int i;
-   printf("Enter the size of the array(max 15):");
+   int pos=-1;
+
+   printf("Enter the size of the array(max 15): ");
    scanf("%d",&size);
-   printf("Enter the array:\n");
+   printf("Enter the sorted array:\n");
    for(i=0;i<size;++i)
      scanf("%d",&arr[i]);
      
-   printf("Enter the element to search:");
+   printf("Enter the element to search: ");
    scanf("%d",&key); 
  
-   sortNum(arr,size);
-   binarySearch(arr,size,key);
+  pos = binarySearch(arr,size,key);
+  if(pos!=-1)
+   printf("Element %d found at index %d",key,pos);
+  else
+   printf("Element not found!"); 
 
-   
 
    return 0;
 }
 
 
-void sortNum(int arr[], int size)
+
+int binarySearch(int arr[], int size, int key)
  {
   
-    int i=0,j=0;
+    int low = 0;
+    int high = size-1;
+    int m =0;
 
-    for(i=0;i<size-i,)
-      {
-        for(j=(i+1))  
-      }
-    
-
- }
-
-
-
-void linearSearch2(int arr[], int size, int key)
- {
-  
-    int i=0;
-    int flag=0;
-    printf("\n\n----------------------------------------------\nEntered function to print all occurence of key\n\n");
-    for(i=0;i<size;++i)
+    while(low<=high)
      {
-        if(arr[i]==key)
+         
+        m= low + (high-low)/2;
+       //  printf("hello");
+         if(arr[m]>key)
+           {
+              high = m-1;
+           }
+         else if(arr[m]<key)
           {
-            printf("%d found at index %d\n",key,i);
-            flag++;       
-          }
+             low = m+1;
+          }  
+
+         else  return m;
      }
 
-     if(!flag)
-      {
-        printf("Element not found in array!");
-      }
-    else printf("\nNumber of occurences of %d: %d", key,flag);
+     return -1;
  }
