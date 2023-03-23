@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "insertionArray.C": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
