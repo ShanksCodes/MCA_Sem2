@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script>
+
+        function addFoo()
+         {
+           x = document.forms["myForm"]["fnum"].value;
+           y = document.forms["myForm"]["snum"].value;
+           alert(x+y)
+            
+         }
+
+    </script>
+    <link rel="stylesheet" href="./Form.css">
+</head>
+
+
+<body>
+<h1 style="text-align:center; color: hsl(0, 76%, 59%);">Simple Calculator</h1><br>
+
+<div class="f">
+<form name="myName">
+
+  <label for="fnum">First Number:</label><br>
+  <input type="number" id="fnum" name="fnum"><br><br>
+
+  <label for="snum">Second Number:</label><br>
+  <input type="number" id="snum" name="snum" size="8"><br><br>
+
+  
+  <label for="eval">Resultant:</label><br>
+  <input type="number" id="eval" name="eval" size="8"><br><br>
+
+  <input type="button" class="button" onclick="addFoo()" value="+">
+  <input type="button" class="button" onclick="subFoo()" value="-">
+  <input type="button" class="button" onclick="mulFoo()" value="x">
+  <input type="button" class="button" onclick="divFoo()" value="/">
+  <input type="button" value="^" onclick="powFoo()"><br><br> 
+  
+
+  <input type="submit" class="submit" value="Submit">
+  
+</form>
+</div>
+
+</body>
+</html>
