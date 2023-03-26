@@ -3,6 +3,7 @@
 int binarySearch(int[],int size, int key); //for all occurences
 
 
+
 int main() {
 
    int arr[15];
@@ -43,7 +44,7 @@ int binarySearch(int arr[], int size, int key)
      {
          
         m= low + (high-low)/2;
-       //  printf("hello");
+    
          if(arr[m]>key)
            {
               high = m-1;

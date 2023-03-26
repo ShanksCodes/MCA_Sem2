@@ -9,7 +9,7 @@ int main() {
    int pos;
    int i;
 
-   printf("Enter the size of the array(max 14): ");
+   printf("Enter the size of the array(max 15): ");
    scanf("%d",&size);
    printf("Enter the array:\n");
    for(i=0;i<size;++i)
@@ -37,10 +37,11 @@ void deletionInArray(int arr[], int *size, int pos)
   
      int i=0;
 
-     for(i=pos; i<*(size-1);++i)
+     for(i=pos; i<(*size-1);++i)
       {
         arr[i]=arr[i+1];
       }
 
      --(*size); 
+
  }
