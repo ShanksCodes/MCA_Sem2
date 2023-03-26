@@ -31,7 +31,7 @@ void countSort(int arr[], int size)
  {
   
     int i=0;
-    int j=0;
+    int j=0; //
     int key=0;
      
      for(i=1;i<size;++i)
