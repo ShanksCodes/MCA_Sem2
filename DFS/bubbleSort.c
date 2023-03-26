@@ -45,8 +45,13 @@ void bubbleSort(int arr[], int size)
               temp = arr[j];
               arr[j]=arr[j+1];
               arr[j+1]=temp;
+              flag=1;
             }
          }
+
+         if(!flag)
+           break;
+         flag=0;
       }
 
  }
