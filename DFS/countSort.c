@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-void countSort(int[],int size); //for only 1 occurence
+void countSort(int[],int size); 
 
 
 int main() {
@@ -79,8 +79,8 @@ void countSort(int arr[], int size)
        
       }
 
-   for(i=0;i<size;i++)
-     printf("%d ",arr[i]); 
+   /*for(i=0;i<size;i++)
+     printf("%d ",arr[i]); */
 
    free(count_arr);
    free(output_arr);
