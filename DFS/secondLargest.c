@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
 
-void numLargest(int arr[], int size);
 void numLargest2(int arr[], int size);
 
 int main() {
@@ -17,29 +16,12 @@ int main() {
    for(i=0;i<size;++i)
      scanf("%d",&arr[i]);
      
-   numLargest(arr,size);
    numLargest2(arr,size);
 
    
 
    return 0;
 }
-
-
-void numLargest(int arr[], int size)
- {
-    int i=0;
-    int maxnum = INT_MIN;
-
-    for(i=0;i<size;++i)
-      {
-        if(arr[i] > maxnum)
-          maxnum = arr[i];
-      }
-
-     printf("\n-----------------------------------------\nLargest value in the array is: %d", maxnum);
-
- }
 
 
 
