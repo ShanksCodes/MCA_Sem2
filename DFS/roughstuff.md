@@ -10,3 +10,9 @@ editor.copyWithSyntaxHighlighting
 workbench.editor.enablePreview
 
 Type editor.copyWithSyntaxHighlighting in the search bar and then untick the box labelled Controls whether syntax and then close the settings page
+
+
+git rm --cached *.exe
+git commit -m "Remove .exe files"
+git push
+
