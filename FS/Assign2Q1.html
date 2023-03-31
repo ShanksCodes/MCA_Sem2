@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Registration Form with JS-validation</title>
+	<style>
+  /* Center the form on the page */
+form {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* Style the labels */
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* Style the input fields */
+input[type=text],
+input[type=password],
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Style the radio buttons */
+input[type=radio] {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px;
+}
+
+/* Style the submit button */
+button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style the error messages */
+.error {
+  color: red;
+}
+
+    
+    </style>
+</head>
+
+<body>
+	<h2 class="form-title" style="text-align: center;">Student Registration Form with JS-validation</h2>
+	<div class="form-container">
+		<form name="registrationForm" onsubmit="return validateForm()" method="post">
+			<div class="form-group">
+				<label for="name">Student Name:</label>
+				<input type="text" id="name" name="name" placeholder="Your name">
+				<span class="error" id="nameError"></span>
+			</div>
+			<div class="form-group">
+				<label for="email">Student Email:</label>
+				<input type="text" id="email" name="email" placeholder="Your email">
+				<span class="error" id="emailError"></span>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password">
+				<span class="error" id="passwordError"></span>
+			</div>
+			<div class="form-group">
+				<label for="mobile">Mobile Number:</label>
+				<input type="tel" id="mobile" name="mobile" placeholder="Your mobile number">
+				<span class="error" id="mobileError"></span>
+			</div>
+			<div class="form-group">
+				<label for="gender">Gender:</label>
+				<div class="radio-group">
+					<label for="male">Male:</label>
+					<input type="radio" id="male" name="gender" value="male">
+					<label for="female">Female:</label>
+					<input type="radio" id="female" name="gender" value="female">
+					<label for="other">Other:</label>
+					<input type="radio" id="other" name="gender" value="other">
+				</div>
+				<span class="error" id="genderError"></span>
+			</div>
+			<div class="form-group">
+				<label for="course">Course to apply:</label>
+				<select id="course" name="course">
+					<option value="" selected disabled>Select Course</option>
+					<option value="BCA">BCA</option>
+					<option value="MCA">MCA</option>
+					<option value="BTech">BTech</option>
+					<option value="MTech">MTech</option>
+					<option value="PhD">PhD</option>
+				</select>
+				<span class="error" id="courseError"></span>
+			</div>
+			<div class="form-group">
+				<label for="comments">Comments/Query:</label>
+				<textarea id="comments" name="comments" placeholder="Write anything you would like us to know"></textarea>
+				<span class="error" id="commentsError"></span>
+			</div>
+			<button type="submit" class="btn">Register</button>
+		</form>
+	</div>
+
+
+	<script>
+        function validateForm() {
+  // Get values from inputs
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+  var mobile = document.getElementById("mobile").value;
+  var gender = document.getElementsByName("gender");
+  var course = document.getElementById("course").value;
+  var comments = document.getElementById("comments").value;
+
+  // Validate name field
+  if (name == "") {
+    document.getElementById("nameError").innerHTML = "Please enter your name";
+    return false;
+  } else {
+    document.getElementById("nameError").innerHTML = "";
+  }
+
+  // Validate email field
+  if (email == "") {
+    document.getElementById("emailError").innerHTML = "Please enter your email";
+    return false;
+  } else {
+    document.getElementById("emailError").innerHTML = "";
+  }
+
+  // Validate password field
+  if (password == "") {
+    document.getElementById("passwordError").innerHTML = "Please enter a password";
+    return false;
+  } else if (password.length < 8) {
+    document.getElementById("passwordError").innerHTML = "Password must be at least 8 characters long";
+    return false;
+  } else {
+    document.getElementById("passwordError").innerHTML = "";
+  }
+
+  // Validate mobile field
+  if (mobile == "") {
+    document.getElementById("mobileError").innerHTML = "Please enter your mobile number";
+    return false;
+  } else if (isNaN(mobile) || mobile.length != 10) {
+    document.getElementById("mobileError").innerHTML = "Please enter a valid 10 digit mobile number";
+    return false;
+  } else {
+    document.getElementById("mobileError").innerHTML = "";
+  }
+
+  // Validate gender field
+  var genderSelected = false;
+  for (var i = 0; i < gender.length; i++) {
+    if (gender[i].checked) {
+      genderSelected = true;
+      break;
+    }
+  }
+  if (!genderSelected) {
+    document.getElementById("genderError").innerHTML = "Please select your gender";
+    return false;
+  } else {
+    document.getElementById("genderError").innerHTML = "";
+  }
+
+  // Validate course field
+  if (course == "") {
+    document.getElementById("courseError").innerHTML = "Please select a course";
+    return false;
+  } else {
+    document.getElementById("courseError").innerHTML = "";
+  }
+
+  // Validate comments field
+  if (comments == "") {
+    document.getElementById("commentsError").innerHTML = "Please enter your comments/queries";
+    return false;
+  } else {
+    document.getElementById("commentsError").innerHTML = "";
+  }
+
+  // If all fields are valid, submit form
+  alert("Form submitted successfully!");
+  return true;
+}
+
+
+    </script>
+</body>
+</html>
