@@ -25,6 +25,8 @@ int main() {
    for(i=0;i<size;i++)
      printf("%d ",arr[i]);*/
     
+    int z;
+
    return 0;
 }
 
@@ -32,14 +34,7 @@ int main() {
 void testing()
  {
   
-   int arr[10];
-   int i=0;
-   int*output_arr;
-       output_arr = (int*)calloc(5,sizeof(int));
-
-   //memset(arr,0,5*sizeof(int));
-   for(i=0;i<5;++i)
-   printf("%d",output_arr[i]);
+  printf("Heloooooooooooo");
 
 
  }
