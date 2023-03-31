@@ -21,6 +21,8 @@ body
   padding-top: 3%;
   padding-bottom: 3%;
   background-color: rgb(193, 241, 170);
+  border: rgb(193, 241, 170);
+  border-radius: 25px;
 }
 
 
