@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String Operations</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 0;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+			padding: 30px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		button {
+			padding: 10px;
+			border: none;
+			background-color: #3498db;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
+			margin: 10px;
+			border-radius: 5px;
+			transition: all 0.2s ease-in-out;
+		}
+		button:hover {
+			background-color: #2980b9;
+		}
+		input[type="text"] {
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			margin: 10px;
+			font-size: 16px;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>String Operations</h1>
+	<div class="container">
+		<input type="text" id="inputString" placeholder="Enter a string...">
+		<button onclick="reverseString()">Reverse a string</button>
+		<button onclick="reverseWords()">Reverse Words</button>
+		<button onclick="reverseWordsInPlace()">Reverse the words in-place</button>
+		<button onclick="countWords()">Count Words</button>
+        <button onclick="countCharacters()">Count Characters</button>
+        <button onclick="countVowels()">Count Vowels</button>
+        <button onclick="charFrequency()">Character Frequency</button>
+        <button onclick="findMissingChars()">Missing Characters</button>
+		<input type="text" id="outputString" placeholder="Output will be displayed here..." readonly>
+	</div>
+	<script>
+
+function reverseString() {
+	const inputString = document.getElementById("inputString").value;
+	let reversedString = "";
+	for (let i = inputString.length - 1; i >= 0; i--) {
+		reversedString += inputString[i];
+	}
+	document.getElementById("outputString").value = reversedString;
+}
+
+function reverseWords() {
+  const inputString = document.getElementById("inputString").value;
+  const words = [];
+  let start = 0;
+  for (let i = 0; i < inputString.length; i++) {
+    if (inputString[i] === " ") {
+      words.unshift(inputString.slice(start, i));
+      start = i + 1;
+    }
+  }
+  words.unshift(inputString.slice(start));
+  const reversedWords = words.join(" ");
+  document.getElementById("outputString").value = reversedWords;
+}
+
+
+function reverseWordsInPlace() {
+	const inputString = document.getElementById("inputString").value;
+	let words = [];
+	let currentWord = "";
+	for (let i = 0; i < inputString.length; i++) {
+		if (inputString[i] === " ") {
+			words.push(currentWord);
+			currentWord = "";
+		} else {
+			currentWord += inputString[i];
+		}
+	}
+	words.push(currentWord);
+	let reversedWordsInPlace = "";
+	for (let i = 0; i < words.length; i++) {
+		let reversedWord = "";
+		for (let j = words[i].length - 1; j >= 0; j--) {
+			reversedWord += words[i][j];
+		}
+		reversedWordsInPlace += reversedWord + " ";
+	}
+	document.getElementById("outputString").value = reversedWordsInPlace.trim();
+}
+ 
+
+
+function countWords() {
+  const inputString = document.getElementById("inputString").value;
+  let count = 0;
+  let prevCharWasSpace = true;
+  for (let i = 0; i < inputString.length; i++) {
+    const char = inputString.charAt(i);
+    if (char === " " || char === "\n" || char === "\t") {
+      prevCharWasSpace = true;
+    } else {
+      if (prevCharWasSpace) {
+        count++;
+        prevCharWasSpace = false;
+      }
+    }
+  }
+  document.getElementById("outputString").value = `Count of words: ${count}`;
+}
+
+function countCharacters() {
+  const inputString = document.getElementById("inputString").value;
+  let count = 0;
+  for (let i = 0; i < inputString.length; i++) {
+    count++;
+  }
+  document.getElementById("outputString").value = `Count of characters: ${count}`;
+}
+
+function countVowels() {
+  const inputString = document.getElementById("inputString").value;
+  const vowels = ["a", "e", "i", "o", "u"];
+  let count = 0;
+  for (let i = 0; i < inputString.length; i++) {
+    const char = inputString.charAt(i).toLowerCase();
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  document.getElementById("outputString").value = `Count of vowels: ${count}`;
+}
+
+function charFrequency() {
+	const inputString = document.getElementById("inputString").value;
+	const frequency = {};
+	for (let i = 0; i < inputString.length; i++) {
+		const char = inputString[i];
+		if (frequency[char]) {
+			frequency[char]++;
+		} else {
+			frequency[char] = 1;
+		}
+	}
+	let result = "";
+	for (const char in frequency) {
+		result += char + ": " + frequency[char] + ", ";
+	}
+	document.getElementById("outputString").value = result.slice(0, result.length - 2);
+}
+
+function findMissingChars() {
+	const inputString = document.getElementById("inputString").value.toLowerCase();
+	let missingChars = "";
+	for (let i = 97; i <= 122; i++) {
+		const char = String.fromCharCode(i);
+		let charFound = false;
+		for (let j = 0; j < inputString.length; j++) {
+			if (inputString.charCodeAt(j) === i) {
+				charFound = true;
+				break;
+			}
+		}
+		if (!charFound) {
+			missingChars += char;
+		}
+	}
+	if (missingChars === "") {
+		document.getElementById("outputString").value = "No missing characters found.";
+	} else {
+		document.getElementById("outputString").value = "Missing characters: " + missingChars;
+	}
+}
+
+
+	</script>
+</body>
+</html>
