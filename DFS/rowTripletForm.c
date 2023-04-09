@@ -27,17 +27,14 @@ int main()
      }
 
      total_values = findTotalValues(arr,rows,cols);
-         printf("\nc: %d",total_values);
+
 
      int **row_triplet_matrix = (int **) calloc(3, sizeof(int *));
     
      for (i = 0; i < 3; i++) 
         row_triplet_matrix[i] = (int *) calloc((total_values+1), sizeof(int));
-            printf("\nc: %d",total_values);
-
     
     rowTripletMatrix(arr,row_triplet_matrix,rows,cols,total_values);
-        printf("\nc: %d",total_values);
     printf("\nCorrosponding row-triplet matrix for the given sparse matrix is:\n\n");
     printArray(row_triplet_matrix,3,total_values);
 
@@ -70,7 +67,7 @@ int findTotalValues(int**arr,int rows,int cols)
              count++;
           }
     }
-    printf("\nzz%d", count);
+  
     return count;
  }
 
@@ -78,7 +75,6 @@ void rowTripletMatrix(int**arr, int**row_triplet_matrix, int rows, int cols, int
  {
     int i=0, j=0;
     int q=1;  //p will have values 0 1 and 2 while q from 1 to total_values
-    printf("\nc: %d",total_values);
     row_triplet_matrix[0][0]=rows;
     row_triplet_matrix[1][0]=cols;
     row_triplet_matrix[2][0]=total_values;
