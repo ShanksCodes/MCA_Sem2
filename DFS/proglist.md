@@ -19,4 +19,4 @@ check whether a matrix is sparse or not
 convert sparse matrix into row triplet form
 find missing element in array
 peak element in array
-find duplicate elements in array
+find duplicate elements in array, b:remove duplicate elements
