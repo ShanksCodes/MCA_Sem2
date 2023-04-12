@@ -60,12 +60,7 @@ void countSort(int arr[], int size)
       count_arr[i]+=count_arr[i-1];
      }    
 
-    /*for(i=size-1; i>=0; --i)
-     { 
-       output_arr[count_arr[arr[i]]-1] = arr[i];
-       count_arr[arr[i]]--;
-       
-     }*/
+ 
 
     for(i=0;i<size;++i)
       {
