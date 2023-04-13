@@ -1,0 +1,18 @@
+<?php
+$emp=array(
+    array(1,"AISHWARYA",10000)
+    array(2,"DAKSH",20000)
+    array(3,"vibhu",30000)
+);
+echo."<pre>";
+echo."<br>";
+for($row=0;$row<count($emp);$row++)
+{
+    for($col=0;$col<count($emp($row);$col++)
+    {
+        echo$emp[$row][$col]." ";
+
+    }
+echo."<br>";
+}
+?>

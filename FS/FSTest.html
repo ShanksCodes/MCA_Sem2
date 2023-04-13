@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Two Divisions Side by Side</title>
+	<style>
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.paragraph {
+			background-image: url("image.jpg");
+			background-size: cover;
+			width: 50%;
+			height: 500px;
+			padding: 50px;
+			box-sizing: border-box;
+		}
+
+		.list {
+			width: 50%;
+			height: 500px;
+			background-color: black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			box-sizing: border-box;
+		}
+
+		.list-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+			width: 100px;
+			border: 2px solid white;
+			font-size: 36px;
+			color: white;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="paragraph">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar commodo magna, vel semper mi. Nunc id quam id nisl vestibulum commodo vel vitae massa. Quisque vehicula euismod risus, ac commodo sapien faucibus quis. Donec eget libero et sem dapibus mollis. Vivamus commodo risus quis eros faucibus, nec rutrum est placerat.</p>
+		</div>
+		<div class="list">
+			<div class="list-item">1</div>
+			<div class="list-item">2</div>
+			<div class="list-item">3</div>
+			<div class="list-item">4</div>
+			<div class="list-item">5</div>
+			<div class="list-item">6</div>
+			<div class="list-item">7</div>
+			<div class="list-item">8</div>
+			<div class="list-item">9</div>
+			<div class="list-item">10</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+Create an HTML page with pure CSS. It will be white background. On the page, there will be two equal sized boxes side by side box1 and box2, not covering the whole screen though. box1 will have light purple background color and a transparent image background, with heading and text about some random event. on the rigt box box2, there will be an ordered list. each li component will be a division with huge number for box and some random info
