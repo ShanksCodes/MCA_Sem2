@@ -19,4 +19,7 @@ check whether a matrix is sparse or not
 convert sparse matrix into row triplet form
 find missing element in array
 peak element in array
+malloc calloc realloc sum of array
 find duplicate elements in array, b:remove duplicate elements
+array of structure- take name ID and sal as input, and find details of employee with highest sal
+same but using dynamic pointer
