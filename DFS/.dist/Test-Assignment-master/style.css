@@ -1,0 +1,150 @@
+:root{
+    --primary-clr: rgba(127, 127, 270, 0.8);
+    --secondary-clr: #262626;
+    --primary-hover: rgba(220, 43, 115, 0.8);
+    --secondary-hover: #6d233c;
+    --modal-border-radius: 7pt;
+}
+
+body{
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.left, .right{
+    background-color: var(--primary-clr);
+}
+
+/* Left box */
+
+.left{
+    position: relative;
+    max-height: min-content;
+    aspect-ratio: 1 / 1;
+    min-width: 530px;
+    padding: 10px;
+    color: #f4f4f4;
+    transition: background-color 200ms;
+}
+
+.left .logo-bg{
+    position: absolute;
+    z-index: -1;
+    height: 95%;
+    width: 95%;
+    top: 3em;
+    left: 0;
+}
+
+
+.left h1{
+    text-transform: uppercase;
+}
+
+.quote{
+    display: block;
+    font-size: large;
+    color: #5aeeff;
+}
+
+.quote::after{
+    content: close-quote;
+}
+
+.quote::before{
+    content: open-quote;
+}
+
+ol{
+    font-size: x-small;
+    font-family: monospace, serif;
+    list-style-position: inside;
+    padding-left: 0;
+    counter-reset: count;
+    list-style-type: none;
+}
+
+ol > li::before{
+    counter-increment: count;
+    content:counter(count) ')';
+    margin-right: 0.5rem;
+}
+
+h4{
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.left:hover{
+    background-color: var(--primary-hover);
+}
+
+/* Right box */
+
+.right{
+    display: grid;
+    row-gap: 10px;
+    padding-inline: 25px;
+    padding-block: 35px;
+}
+
+.modal{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    background-color: #f4f4f4;
+    height: min-content;
+    border-radius: var(--modal-border-radius);
+}
+
+.modal_date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-clr);
+    color: #f4f4f4;
+    height: 177px;
+    aspect-ratio: 1 / 1;
+    margin: auto;
+    border-radius: var(--modal-border-radius) 0 0 var(--modal-border-radius);
+}
+
+.modal_date h1{
+    text-align: center;
+}
+
+.modal_date h1 div{
+    font-size: 1.5em;
+}
+
+.modal_heading{
+    font-size: medium;
+    margin: 0;
+}
+
+.modal p{
+    font-size: smaller;
+    margin-bottom: 0;
+}
+
+.btn{
+    cursor: pointer;
+    user-select: none;
+    border: 1.5px solid black;
+    width: max-content;
+    padding: 5px;
+    color: blue;
+    border-radius: var(--modal-border-radius);
+    margin: 10px 0;
+}
+
+.modal_date:hover{
+    background-color: var(--secondary-hover);
+    transition: background-color 200ms;
+}
