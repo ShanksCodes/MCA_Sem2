@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc Challenge</title>
+    <style>
+
+
+
+       .box1 {
+         width: calc(50% - 20px);
+         height: 580px;
+         padding: 10px;
+         margin-right: 10px;
+         float: left;
+         box-sizing: border-box;
+         background-color: rgba(14, 70, 126, 0.9);
+         background-image: url("bciiitlogod.png");
+         background-size: contain;
+         background-position: center;
+         background-repeat: no-repeat;
+       }
+       
+       .box1::before {
+         content: "";
+         display: block;
+         position: absolute;
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background: url("bciiitlogoc.png");
+         opacity: 0.1;
+         z-index: -1;
+       }
+       
+
+      .box1:hover{
+        background-color: rgb(232, 139, 154);
+      }
+
+      .box1 h1 {
+        color: white;
+      }
+
+
+
+
+
+      .box2 {
+        width: calc(50% - 20px);
+        height: 580px;
+        background-color: RGB(14 70 126);
+        padding: 3px;
+        margin-left: 20px;
+        float: left;
+        box-sizing: border-box;
+      }
+
+      .box2 ol {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .box2 li {
+        margin: 10px 0;
+        font-size: 32px;
+        font-weight: bold;
+        color: black;
+      }
+
+    .outerb2{
+        margin: 2px 10px 7px 11px;
+        background-color: yellow;
+        max-width: 100%;
+        height:175px;
+    }
+
+    .leftb2{
+      margin:0px;
+      max-width:30%;
+      height:175px;
+      background-color: rgb(45, 44, 44);
+      text-align: center;
+      color: white;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    
+    }
+
+    .leftb2:hover{
+        background-color: red;
+      
+    }
+
+    .rightb2
+     {
+        background-color: white;
+        height: 175px;
+
+     }
+
+ 
+
+    </style>
+  </head>
+  <body> 
+
+    <div class="box1">
+      <h1>EVENT DETAILS</h1>
+      <p style=" color: cyan; font-weight: bold; display:inline;">"Programming is like any other sport"</p>
+      <br><p style="color:white; display: inline;">-Mark Zuckerburg</p>
+      <hr style="color: white;">
+      <p style="color:white">
+      Boosting the concept of programming we bring forward a unique coding challenge. Blind coding
+      is the new platform where each and every one of you has a chance to win.<br>
+      With the idea of imparting programming knowledge, presenting Blind Coding, a simple coding competition 
+      where you'll be given even simpler problems to code. Sounds too easy?
+      </p>
+
+    </div>
+
+    
+    <div class="box2">
+      <ol>
+        <li>
+        <div class="outerb2">
+            <div class="leftb2">
+              May 6th
+              
+              </span>
+            </div>
+          
+
+        </div>
+        
+            
+        </li>
+
+        
+        <li>
+            <div class="outerb2">
+                <div class="leftb2"></div>
+            </div>
+           
+                
+            </li>
+
+            <li>
+                <div class="outerb2">
+                    <div class="leftb2"></div>
+                </div>
+                
+                    
+                </li>
+      </ol>
+    </div>
+  </body>
+</html>

@@ -1,43 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//void bubbleSort(int[],int size); //for only 1 occurence
-void testing();
+struct sample{
+   int data;
+  char name[20];
+};
 
-int main() {
 
-   int arr[15];
-   int size;
-   int key;
-   int i;
-   printf("\n----------------------------------------------------------------------------\n");
+void foo2(struct sample*);
 
-  // printf("Enter the size of the array(max 15): ");
-  // scanf("%d",&size);
-  // printf("Enter the array:\n");
-  // for(i=0;i<size;++i)
-   //  scanf("%d",&arr[i]);
-     
-   testing();
+ 
 
-  /* printf("\nArray sorted successfully. New array:\n");
+int main()
+{
+  printf("\n----------------------------------------------------------\n");
 
-   for(i=0;i<size;i++)
-     printf("%d ",arr[i]);*/
-    
-    int z;
 
-   return 0;
+ struct sample*s= (struct  sample*) malloc(5*sizeof(struct sample));
+
+
+ 
+
+ printf("%snamee\n",s[0].name);
+
+ foo2(s);
+ printf("%d\n",s[0].data);
+
+
+
+
+  printf("\n----------------------------------------------------------\n");
+  return 0;
 }
 
 
-void testing()
+void foo2(struct sample*s)
  {
-  
-  printf("Heloooooooooooo");
-
-
+   s[0].data=30;
+   printf("%d\n",s[0].data);
  }
-
-
-
