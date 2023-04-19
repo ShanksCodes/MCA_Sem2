@@ -1,14 +1,15 @@
 function factorial(num) {
-    // Recursive function to calculate factorial
+    // Recursive Function to calculate factorial
     if (num === 0 || num === 1) {
       return 1;
     } else {
       return num * factorial(num - 1);
     }
+
   }
   
   function calculateFactorialArray(inputArray) {
-    // Create an empty array to store the factorials
+    // Create Empty Array to store the Array
     const outputArray = [];
   
     // Loop through each element in the input array
@@ -22,13 +23,13 @@ function factorial(num) {
       outputArray.push(result);
     }
   
-    // Return the output array
+
+    //Return the Out put array
     return outputArray;
   }
   
-  // Example usage:
-  const inputArray = [1, 2, 3, 4, 5];
+  const inputArray = [5, 6, 5, 4, 5];
   const outputArray = calculateFactorialArray(inputArray);
   console.log(outputArray);
-  // Output: [1, 2, 6, 24, 120]
+  
   
