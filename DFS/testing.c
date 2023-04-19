@@ -1,32 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct sample{
-   int data;
-  char name[20];
-};
-
-
-void foo2(struct sample*);
 
  
 
 int main()
 {
   printf("\n----------------------------------------------------------\n");
+ int x=0;
 
+ printf("\nhi");
+ printf("wassup");
 
- struct sample*s= (struct  sample*) malloc(5*sizeof(struct sample));
-
-
- 
-
- printf("%snamee\n",s[0].name);
-
- foo2(s);
- printf("%d\n",s[0].data);
-
-
+ scanf("%d",&x);
+ printf("%d",x);
+  printf("ggg");
 
 
   printf("\n----------------------------------------------------------\n");
@@ -34,8 +22,3 @@ int main()
 }
 
 
-void foo2(struct sample*s)
- {
-   s[0].data=30;
-   printf("%d\n",s[0].data);
- }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 struct Node{
     int data;
@@ -24,10 +25,8 @@ int main()
     int element =0;
     int index = -1;
     int choice=0;
-
    
-  for(;;)
-   {
+  do{
     
     printf("\n----------------------------------------------------------\n\n");
     printf("1. Press 1 to traverse the linked list.\n");
@@ -44,29 +43,37 @@ int main()
 
     switch(choice)
      {
-       case 1: printf("\nTraversing linked list from the front...");
+       case 1: printf("\nTraversing linked list from the front...\n");
                traverseLinkedList();
                break;
 
-       case 2: printf("\nEnter element to insert at front: ");
+       case 2: printf("\nInsertion from front:\nEnter element to insert at front: ");
                scanf("%d", &element);
                insertFromBeginning(element);
                break;
 
-       case 3: printf("\nEnter element to insert at the end: ");
+       case 3: printf("\nInsertion from end\nEnter element to insert at the end: ");
                scanf("%d", &element);
                insertFromEnd(element);
                break;
 
-       case 4: printf("\nEnter element and index where new node must be added respectively: ");
+       case 4: printf("\nInsertion at specific position\nEnter element and index where new node must be added respectively: ");
                scanf("%d%d", &element,&index);
            //    insertFromEnd(element,index); 
                break;
 
        case -1: break;
-       default: printf("\nInvalid entry!");                                   
+       default: printf("\nInvalid entry!");    
+                             
      }
-   }
+
+       if(choice!=-1)
+        {
+          printf("\n\nPress any key to continue...");
+          getch();
+        }
+
+   }while(choice!=-1);
 
    
     printf("\n----------------------------------------------------------\n\n");
@@ -76,7 +83,6 @@ int main()
  void traverseLinkedList()
  {
      struct Node*temp=start;
-     int counter=1;
 
      if(start==NULL)
        {
@@ -84,44 +90,36 @@ int main()
          return;
        }
 
-     while(temp!=NULL)
+     while(temp->next!=NULL) //usually it is temp->NULL as per standards, but change is to print -> effectively
      {
-         printf("\ndNode %d: %d",counter,temp->data);
+         printf("%d --> ",temp->data);
          temp=temp->next;
      }
+
+     printf("%d",temp->data);
+     temp=temp->next;
  }
 
  void insertFromBeginning(int value)
   {
   
-     int funcChoice=1;
       struct Node*newNode = NULL; 
-     while(funcChoice==1)
-      {
-        funcChoice=0;  
-  
+
         newNode=malloc(sizeof(struct Node));
         newNode->data=value;
         newNode->next=start;
         start=newNode;
 
         printf("\nNew node successfully inserted!");
-        printf("\nPress 1 to insert another node. Any other key to exit: ");
-        scanf("%d", &funcChoice);
-
-      }
+      
   }
 
   void insertFromEnd(int value)
    {
     
-     int funcChoice=1;
      struct Node*newNode=NULL;
      struct Node*temp=NULL;
 
-     while(funcChoice==1)
-      {
-        funcChoice=0;
         temp=start;
         newNode = malloc(sizeof(struct Node));
         newNode->data=value;
@@ -130,6 +128,7 @@ int main()
          {
            start=newNode;
            newNode->next=NULL;
+           printf("New node successfully inserted!");
            return;
          }
    
@@ -140,9 +139,6 @@ int main()
         temp->next=newNode;
         newNode->next=NULL;
     
-        printf("\nNew node successfully inserted!");
-        printf("\nPress 1 to insert another node. Any other key to exit: ");
-        scanf("%d", &funcChoice);
-      }
+        printf("New node successfully inserted!");  
    }
 
