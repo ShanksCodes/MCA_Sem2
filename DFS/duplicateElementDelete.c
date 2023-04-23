@@ -48,7 +48,7 @@ int main()
 void duplicateElementDel(int*arr,int *size)
  {
 
-    bubbleSort(arr,*size);
+    bubbleSort(arr,*size);   
     int i=0,j=0;
 
  
@@ -61,7 +61,7 @@ void duplicateElementDel(int*arr,int *size)
 
         else 
          {
-            deletionInArray(arr,size,i);
+            deletionInArray(arr,size,i);   //-2 2 2 2 2 3 4 4 7 9 9 9
             --i; 
          }
   

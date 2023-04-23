@@ -65,7 +65,7 @@ int main()
 
        case 4: printf("\nInsertion at specific position\nEnter element and position where new node must be added respectively: ");
                scanf("%d%d", &element,&position);
-               insertAtPosition(element,position); 
+               insertFromEnd(element,position); 
                break;
 
        case 5: printf("\nDeletion from front\n");
@@ -113,7 +113,7 @@ int main()
  }
 
  void traverseLinkedList()
-  {
+ {
      struct Node*temp=start;
 
      if(start==NULL)
@@ -123,14 +123,14 @@ int main()
        }
 
      while(temp->next!=NULL) //usually it is temp->NULL as per standards, but change is to print -> effectively
-      {
-          printf("%d --> ",temp->data);
-          temp=temp->next;
-      }
+     {
+         printf("%d --> ",temp->data);
+         temp=temp->next;
+     }
 
      printf("%d",temp->data);
      temp=temp->next;
-  }
+ }
 
  void insertFromBeginning(int value)
   {
@@ -225,7 +225,7 @@ int main()
     }
 
 
-  void deleteAtPosition(int position)
+  void deleteFromPosition(int position)
    {
      struct Node*temp=NULL;
      struct Node*temp2=NULL;
@@ -242,33 +242,26 @@ int main()
    }
   
   
-void sortLinkedList()
+ void sortLinkedList()
  {
-   struct Node* temp = start;
-   struct Node* temp2 = NULL;
-   int tempData=0;
-   
-   while(temp != NULL)
+   struct Node*temp=NULL;
+   struct Node*temp2=NULL;
+   temp=start;
+   while(temp!=NULL)
    {
-      temp2 = temp->next;
-      
-      while(temp2 != NULL)
-      {
-         if(temp->data > temp2->data)
-         {
-            
-             tempData = temp->data;
-            temp->data = temp2->data;
-            temp2->data = tempData;
-         }
-         
-         temp2 = temp2->next;
-      }
-      
-      temp = temp->next;
+     temp2=temp->next;
+     while(temp2!=NULL)
+     {
+       if(temp->data>temp2->data)
+       {
+         temp->data=temp2->data;
+         temp2->data=temp->data;
+       }
+       temp2=temp2->next;
+     }
+     temp=temp->next;
    }
  }
-
 
 
 
@@ -287,40 +280,4 @@ void sortLinkedList()
    }
  }
 
-
-void insertInSortedLinkedList(int value)
-{
-    struct Node*temp = start;
-    struct Node*prev = NULL;
-    struct Node*newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->next = NULL;
-
-    if (temp == NULL)
-     {
-         start = newNode;
-         return;
-     }
- 
-    if (temp->data > value)
-     {
-         newNode->next = temp;
-         start = newNode;
-         return;
-     }
- 
-    while (temp != NULL && temp->data < value)
-     {
-         prev = temp;
-         temp = temp->next;
-     }
-
-    if (temp == NULL)
-     {
-         prev->next = newNode;
-         return;
-     }
-
-    newNode->next = temp;
-    prev->next = newNode;
-}
+ void insert

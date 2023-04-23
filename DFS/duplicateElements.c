@@ -56,7 +56,7 @@ int* duplicateElement(int*arr,int size)
        exit(1);
      }
 
-    bubbleSort(arr,size);
+    bubbleSort(arr,size);  
 
     int i=0,j=0;
     int k=1;
@@ -64,7 +64,7 @@ int* duplicateElement(int*arr,int size)
 
     int flag=0;
 
-    for(i=0;i<size-1;++i)
+    for(i=0;i<size-1;++i)    //-2 2 2 2 2 3 4 4 7 9 9 9
      { 
         if(arr[i]!=arr[i+1])
           {
