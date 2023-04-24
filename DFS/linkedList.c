@@ -205,14 +205,29 @@ int main()
 
   void deleteFromFront()
     {
+      
+      if(head==NULL)
+       {
+         printf("\nLinked list is empty.\n");
+         return;
+       }
+
       struct Node*temp=NULL;
       temp=start;
       start=start->next;
       free(temp);
+      printf("Node deleted from end successfully.");
     }
 
   void deleteFromEnd()
     {
+      
+     if(head==NULL)
+       {
+         printf("\nLinked list is empty.\n");
+         return;
+       }
+
       struct Node*temp=NULL;
       struct Node*temp2=NULL;
       temp=start;
@@ -222,11 +237,28 @@ int main()
       temp2=temp->next;
       temp->next=NULL;
       free(temp2);
+      printf("Node deleted from end successfully.");
     }
 
 
   void deleteAtPosition(int position)
    {
+     
+    if(head==NULL)
+       {
+         printf("\nLinked list is empty.\n");
+         return;
+       }
+
+    if (position == 0)
+      {
+        struct Node* temp = head;
+        head = head->next;
+        free(temp);
+        printf("Node at position %d deleted successfully.", position);
+        return;
+      }  
+
      struct Node*temp=NULL;
      struct Node*temp2=NULL;
      int i=0;
@@ -239,6 +271,7 @@ int main()
      temp2=temp->next;
      temp->next=temp2->next;
      free(temp2);
+     printf("Node deleted from end successfully.");
    }
   
   
