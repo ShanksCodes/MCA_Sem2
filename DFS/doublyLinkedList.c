@@ -22,6 +22,7 @@ void deleteAtPosition(int position);
 void reverseLinkedList();
 void sortLinkedList();
 void insertInSortedLinkedList(int value);
+int lengthOfLinkedList();
 
 
 int main()
@@ -45,7 +46,8 @@ int main()
     printf("8. Press 8 to delete a node at a specific index.\n");
     printf("9. Press 9 to reverse the linked list\n");
     printf("10. Press 10 to sort the linked list\n");
-    printf("11. Press 11 to insert into a sorted linked list:\n");
+    printf("11. Press 11 to insert into a sorted linked list:\n");   
+    printf("12. Press 12 to find the length of the linked list:\n");
 
     printf("-1. Press -1 to exit.\n");
     printf("\nEnter your choice: ");
@@ -58,7 +60,7 @@ int main()
                break;
 
        case 2: printf("\nTraversing linked list from the end...\n");
-               traverseLinkedListFromFront();
+               traverseLinkedListFromEnd();
                break;         
 
        case 3: printf("\nInsertion from front:\nEnter element to insert at front: ");
@@ -102,6 +104,9 @@ int main()
                insertInSortedLinkedList(element);
                break;
 
+       case 12: printf("\nLength of the linked list: %d\n",lengthOfLinkedList());
+               break;
+
        case -1: break;
        default: printf("\nInvalid entry!");    
                              
@@ -137,7 +142,7 @@ int main()
       }
 
      printf("%d",temp->data);
-     temp=temp->next;
+     //temp=temp->next;
   }
 
  void traverseLinkedListFromEnd()
@@ -210,6 +215,7 @@ int main()
        {
          end->next=newNode;
          newNode->prev=end;
+         newNode->next=NULL;
          end=newNode;
        }
  
@@ -303,22 +309,21 @@ void deleteFromEnd()
       }
 
 
-     struct Node*temp=NULL;
+     struct Node*temp=start;
 
      if(position == 0)
-     {
-       start = start->next;
-       if(start != NULL)
-           start->prev = NULL;
-       
-       free(temp);
-       printf("Node deleted successfully.");
-       return;
-     }
+      {
+        start = start->next;
+        if(start != NULL)
+            start->prev = NULL;
+        
+        free(temp);
+        printf("Node deleted successfully.");
+        return;
+      }
 
      struct Node*temp2=NULL;
      int i=0;
-     temp=start;
      while(i<position-1)
       {
         temp=temp->next;
@@ -326,7 +331,8 @@ void deleteFromEnd()
       }
      temp2=temp->next;
      temp->next=temp2->next;
-     temp2->next->prev=temp;
+     if (temp2->next != NULL)
+        temp2->next->prev = temp;
      free(temp2);
      printf("Node deleted successfully.");
    }
@@ -414,4 +420,17 @@ void insertInSortedLinkedList(int value)
     newNode->prev = temp->prev;
     temp->prev->next = newNode;
     temp->prev = newNode;
+}
+
+
+int lengthOfLinkedList()
+{
+    struct Node* temp = start;
+    int count = 0;
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+    return count;
 }
