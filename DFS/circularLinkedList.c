@@ -102,7 +102,7 @@ int main()
      struct Node*temp=tail->next;
      struct Node*firstNode = tail->next;
 
-     if(start==NULL)
+     if(tail==NULL)
        {
          printf("\nLinked list is empty.\n");
          return;
@@ -172,10 +172,10 @@ int main()
      temp=tail->next;
      newNode = (struct Node*)malloc(sizeof(struct Node));
      newNode->data=value;
-     if(start==NULL)
+     if(tail==NULL)
       {
         tail=newNode;
-        newNode->next=NewNode;
+        newNode->next=newNode;
         printf("New node successfully inserted!");
         return;
       }
@@ -204,7 +204,7 @@ int main()
 
       struct Node*temp=NULL;
       temp=tail->next;
-      tail->next = temp-next;
+      tail->next = temp->next;
       free(temp);
       printf("Node deleted from end successfully.");
 
@@ -214,7 +214,7 @@ int main()
   void deleteFromEnd()
     {
       
-     if(start==NULL)
+     if(tail==NULL)
        {
           printf("\nLinked list is empty.\n");
           return;
@@ -229,7 +229,7 @@ int main()
        }
 
       temp2 = temp->next;
-      temp-next=tail->next;
+      temp->next=tail->next;
       tail=temp;
 
       free(temp2);
@@ -240,7 +240,7 @@ int main()
   void deleteAtPosition(int position)
    {
      
-    if(start==NULL)
+    if(tail==NULL)
        {
          printf("\nLinked list is empty.\n");     
          return;
@@ -248,29 +248,32 @@ int main()
 
     if (position == 0)
       {
-        struct Node* temp = start;
-        start = start->next;
+        struct Node* temp = tail->next;
+        if(temp->next!=tail)
+          start = start->next;
+          
         free(temp);
         printf("Node at position %d deleted successfully.", position);
         return;
       }  
 
-     struct Node*temp=NULL;
-     struct Node*temp2=NULL;
+     struct Node*temp=tail->next;
      int i=0;
-     temp=start;
+    
      while(i<position-1)
       {
         temp=temp->next;
         i++;
       }
-     temp2=temp->next;
-     temp->next=temp2->next;
-     free(temp2);
+
+      temp->next=temp->next->next;
+      temp=temp->next;
+      free(temp);
+
      printf("Node deleted from end successfully.");
    }
   
-int lengthOfLinkedList()
+int lengthOfCircularList()
  {
    
    if(tail==NULL)
