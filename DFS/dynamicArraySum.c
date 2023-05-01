@@ -24,10 +24,12 @@ int main()
 
    printf("The sum of elements is: %d",sum);
 
-   printf("\nEnter number of elements to add to the array: ");
+   printf("\n\nEnter number of elements to add to the array: ");
    scanf("%d",&more);
 
-   printf("\nEnter the extra elements for the array: ");
+   arr=(int*) realloc(arr,sizeof(int)*(size+more));
+
+   printf("Enter the extra elements for the array: ");
    for(int i=0;i<more;i++)
       scanf("%d",&arr[size+i]);
     size+=more;

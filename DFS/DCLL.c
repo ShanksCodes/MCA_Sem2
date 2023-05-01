@@ -5,11 +5,13 @@
 struct Node{
     int data;
     struct Node*next;
+    struct Node*prev;
 };
 
 struct Node*tail=NULL;
 
 void traverseCircularList();
+void traverseFromBack();
 void insertFromBeginning(int value);
 void insertFromEnd(int value);
 void insertAtPosition(int value,int position);
@@ -36,7 +38,8 @@ int main()
     printf("5. Press 5 to delete a node from the front.\n");
     printf("6. Press 6 to delete a node from the end.\n");
     printf("7. Press 7 to delete a node at a specific index.\n");
-    printf("8. Press 11 to find length of the linked list:\n");
+    printf("8. Press 8 to traverse the list from end.\n");
+    printf("9. Press 9 to find length of the linked list:\n");
 
     printf("-1. Press -1 to exit.\n");
     printf("\nEnter your choice: ");
@@ -76,7 +79,11 @@ int main()
                deleteAtPosition(position);
                break; 
 
-       case 8: printf("\nLength of the linked list: %d\n",lengthOfCircularList());
+       case 8: printf("\nTraversing the list from end...\n");
+               traverseFromBack();
+               break;
+
+       case 9: printf("\nLength of the linked list: %d\n",lengthOfCircularList());
                break;
 
        case -1: break;
@@ -118,6 +125,24 @@ int main()
      
   }
 
+ void traverseFromBack()
+  {
+
+     if(tail==NULL)
+      {
+         printf("\nLinked list is empty.\n");
+         return;
+      }
+    
+     struct Node*temp=tail;
+     while(temp->prev!=tail)
+      {
+        printf("%d --> ",temp->data);
+        temp=temp->prev;
+      }
+     printf("%d",temp->data);
+  }
+
  void insertFromBeginning(int value)
   {
   
@@ -129,6 +154,7 @@ int main()
     if(tail==NULL)
       {
           newNode->next = newNode;
+          newNode->prev = newNode;
           tail= newNode;
           printf("\nNew node successfully inserted!");
           return;
@@ -136,6 +162,7 @@ int main()
 
 
       newNode->next=tail->next;
+      newNode->prev=tail;
       tail->next=newNode;
    
              
@@ -152,6 +179,7 @@ int main()
       if(tail==NULL)
         {
           newNode->next = newNode;
+          newNode->prev=newNode;
           tail= newNode;
           printf("\nNew node successfully inserted!");
           return;
@@ -159,6 +187,7 @@ int main()
     
       newNode->next=tail->next;
       tail->next=newNode;
+      newNode->prev=tail;
       tail=newNode;
    }
 
@@ -176,6 +205,7 @@ int main()
       {
         tail=newNode;
         newNode->next=newNode;
+        newNode->prev=newNode;
         printf("New node successfully inserted!");
         return;
       }
@@ -187,10 +217,12 @@ int main()
       }
      temp2=temp->next;
      temp->next=newNode;
+     newNode->prev=temp;
      newNode->next=temp2;
+     temp2->prev=newNode;
 
      if(temp==tail)
-      tail=newNode; 
+      tail=newNode;
 
      printf("New node successfully inserted!");
    }
@@ -209,36 +241,36 @@ int main()
       struct Node*temp=NULL;
       temp=tail->next;
       tail->next = temp->next;
+      temp->next->prev=tail;
       free(temp);
       printf("Node deleted from end successfully.");
 
     }
 
   
-  void deleteFromEnd()
-    {
-      
-     if(tail==NULL)
-       {
-          printf("\nLinked list is empty.\n");
-          return;
-       }
+void deleteFromEnd()
+ {
+    if (tail == NULL)
+     {
+        printf("\nLinked list is empty.\n");
+        return;
+     }
 
-      struct Node*temp=NULL;
-      struct Node*temp2=NULL;
-      temp=tail->next;
-      while(temp->next!=tail)
-       {
-         temp=temp->next;
-       }
+    struct Node* temp = tail;
+    if (temp->prev == temp)
+        tail = NULL;
 
-      temp2 = temp->next;
-      temp->next=tail->next;
-      tail=temp;
+    else
+     {
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+        tail = temp->prev;
+     }
 
-      free(temp2);
-      printf("Node deleted from end successfully.");
-    }
+    free(temp);
+    printf("Node deleted from end successfully.\n");
+ }
+
 
 
   void deleteAtPosition(int position)
@@ -266,6 +298,7 @@ int main()
       }
 
       temp->next=temp->next->next;
+      temp->next->next->prev=temp;
       temp=temp->next;
       free(temp);
 

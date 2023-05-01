@@ -20,6 +20,10 @@ void reverseLinkedList();
 void sortLinkedList();
 void insertInSortedLinkedList(int value);
 int lengthOfLinkedList();
+int searchLinkedList(int value);
+void createLoop();
+struct Node* detectCycle();
+void removeCycle();
 
 
 int main()
@@ -27,7 +31,11 @@ int main()
     
     int element =0;
     int position = -1;
+    int pos=-1;
     int choice=0;
+    int val=0;
+    struct Node*temp=NULL;
+    struct Node*temp2=NULL;
    
   do{
     
@@ -43,6 +51,10 @@ int main()
     printf("9. Press 9 to sort the linked list\n");
     printf("10. Press 10 to insert into a sorted linked list:\n");
     printf("11. Press 11 to find length of the linked list:\n");
+    printf("12. Press 12 to search the linked list:\n");
+    printf("13. Press 13 to detect cycle:\n");
+    printf("14. Press 14 to remove cycle:\n");
+    
 
     printf("-1. Press -1 to exit.\n");
     printf("\nEnter your choice: ");
@@ -96,6 +108,38 @@ int main()
                break;
 
        case 11: printf("\nLength of the linked list: %d\n",lengthOfLinkedList());
+               break;
+
+       case 12: printf("\nEnter element to search in the linked list: ");
+               scanf("%d", &val);
+               pos= searchLinkedList(val);
+               if(pos==-1)
+                printf("\nElement not found!");
+               else
+                printf("\nElement found at position %d (0 index based)",pos);
+               break;
+
+       case 13: printf("\nDetect cycle in the linked list:\n");
+               createLoop();
+               temp = detectCycle();
+               if(temp==NULL)
+                {
+                   printf("\nNo cycle detected!");
+                   break;
+                }
+               temp2=start;
+               pos=0;
+               while(temp2!=temp)
+                {
+                   ++pos;
+                   temp2=temp2->next;
+                }
+               printf("\nCycle detected at position: %d (0 index based) with value: %d\n",pos,temp->data);
+               break;
+
+       case 14: printf("\nRemove cycle in the linked list:\n");
+               removeCycle();
+               printf("\nCycle removed successfully!");
                break;
 
        case -1: break;
@@ -382,4 +426,85 @@ int lengthOfLinkedList()
         temp=temp->next;
     }
     return i;
+ }
+
+ int searchLinkedList(int value)
+ {
+    struct Node*temp=start;
+    int pos=0;
+    while(temp!=NULL)
+     {
+        if(temp->data==value)
+            return pos;
+         
+        temp=temp->next;
+        pos++;
+     }
+    return -1;
+ }
+
+
+void createLoop()
+ {
+   if((rand()%5+1)<5)  //manually creating 80% chance of cycle
+    {
+      struct Node*temp=start;
+      while(temp->next!=NULL)      
+        temp=temp->next;
+      
+      temp->next= start->next;
+       
+    }
+                
+ }
+
+struct Node* detectCycle()
+ {
+   
+    struct Node*slow= start;;
+    struct Node*fast= start;;
+    struct Node*loopNode=start;
+
+    while(fast!=NULL && fast->next!=NULL)
+     {
+        slow=slow->next;
+        fast=fast->next->next;
+
+        if(slow==fast)
+         {
+           while(loopNode!=slow)
+            {
+              loopNode=loopNode->next;
+              slow=slow->next;
+            }
+
+            return loopNode;
+         }
+     }
+
+     return NULL;   
+ }
+
+
+void removeCycle()
+ {
+    struct Node*temp= detectCycle();
+    struct Node*temp2=temp;
+    if(temp==NULL)
+     {
+       printf("\nNo cycle detected in the linked list!");
+       return;
+     }
+
+    if(start==NULL) 
+     {
+       printf("\nLinked list is empty!");
+       return;
+     }
+
+    while(temp2->next!=temp)
+      temp2=temp2->next;
+    
+    temp2->next=NULL;
+     
  }
