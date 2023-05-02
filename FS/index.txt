@@ -1,8 +1,0 @@
-14march= table
-15 march= hyperlinks, link, sectional link in same doc, in other doc, a url link etc,, making a form
-16 march = formatting stuff, iframes, lists, pre
-
-18 april = factorial of 5 numbers stored in array, output placed in other array
-simple factorial
-put prime and non prime from array into different arrays
-frequency of a digit in a given numbers
