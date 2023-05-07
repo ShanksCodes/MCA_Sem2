@@ -12,25 +12,24 @@ struct Node*start1=NULL;
 struct Node*start2=NULL;
 struct Node*start3=NULL;
 
-void traverseLinkedList();
-void insertFromBeginning(int value);
-void insertFromEnd(int value);
-void insertAtPosition(int value,int position);
-int middleElement(); 
+void deleteLists();
+void traverseLinkedList(struct Node*);
+void createPolynomial(struct Node**);
+void addList();
+void multiplyList();
+
 
 int main()
  {
     
     int choice=0;
-    int val=0;
-    int element=0;
-    int position=-1;
- 
+
   do{
     
+   // deleteLists();
     printf("\n----------------------------------------------------------\n\n");
-    printf("1. Press 1 to traverse the linked lists.\n");
-    printf("2. Press 2 to insert into linked list.\n");
+    printf("1. Press 1 to create first polynomial expression.\n");
+    printf("2. Press 2 to create second polynomial expression.\n");
     printf("3. Press 3 to add the linked lists.\n");
     printf("4. Press 4 to multiply the linked lists.\n");
 
@@ -40,33 +39,36 @@ int main()
 
     switch(choice)
      {
-       case 1: printf("\nTraversing linked list from the front...\n");
-               traverseLinkedList();
+
+
+       case 1: printf("\nFirst polynomial:\n");
+               createPolynomial(&start1);
+               break;
+        
+       case 2: printf("\nSecond polynomial:\n");
+               createPolynomial(&start2);
+               break;
+             
+
+       case 3: printf("\nFirst polynomial: ");
+               traverseLinkedList(start1);
+               printf("\nSecond polynomial: ");
+               traverseLinkedList(start2);
+               addList();
+               printf("\nResultant: ");
+               traverseLinkedList(start3);
                break;
 
-       case 2: printf("\nInsertion from front:\nEnter element to insert at front: ");
-               scanf("%d", &element);
-               insertFromBeginning(element);
+
+       case 4: printf("\nFirst polynomial: ");
+               traverseLinkedList(start1);
+               printf("\nSecond polynomial: ");
+               traverseLinkedList(start2);
+               multiplyList();
+               printf("\nResultant: ");
+               traverseLinkedList(start3);
                break;
 
-       case 3: printf("\nInsertion from end\nEnter element to insert at the end: ");
-               scanf("%d", &element);
-               insertFromEnd(element);
-               break;
-
-       case 4: printf("\nInsertion at specific position\nEnter element and position where new node must be added respectively: ");
-               scanf("%d%d", &element,&position);
-               insertAtPosition(element,position); 
-               break;
-
-       case 5: val = middleElement();
-               if(val==-1)
-                printf("\nLinked list is empty.");
-                
-               else 
-                printf("\nMiddle element is %d",val); 
-               break;
-              
        
        case -1: break;
        default: printf("\nInvalid entry!");    
@@ -86,7 +88,39 @@ int main()
     return 0;
  }
 
- void traverseLinkedList()
+void deleteLists()
+{
+  struct Node*temp=start1;
+  struct Node*temp2=start2;
+  struct Node*temp3=start3;
+  
+  while(temp!=NULL)
+   {
+    start1=temp->next;
+    free(temp);
+    temp=start1;
+   }
+
+  while(temp2!=NULL)
+   {
+    start2=temp2->next;
+    free(temp2);
+    temp2=start2;
+   }
+
+  while(temp3!=NULL)
+   {
+    start3=temp3->next;
+    free(temp3);
+    temp3=start3;
+   } 
+
+  start1=NULL;
+  start2=NULL;
+  start3=NULL;
+}
+
+ void traverseLinkedList( struct Node*start)
   {
      struct Node*temp=start;
 
@@ -98,95 +132,180 @@ int main()
 
      while(temp->next!=NULL) //usually it is temp->NULL as per standards, but change is to print -> effectively
       {
-          printf("%d --> ",temp->data);
+          printf( "%dX^%d + ",temp->coefficient,temp->exponent);
           temp=temp->next;
       }
 
-     printf("%d",temp->data);
+     printf( "%dX^%d\n",temp->coefficient,temp->exponent);
      temp=temp->next;
   }
 
- void insertFromBeginning(int value)
-  {
-  
-      struct Node*newNode = NULL; 
 
-        newNode=(struct Node*)malloc(sizeof(struct Node));
-        newNode->data=value;
-        newNode->next=start;
-        start=newNode;
-
-        printf("\nNew node successfully inserted!");
+ void createPolynomial(struct Node**start)
+   {
       
-  }
+    int coefficient=0,exponent=0;
+    int choice=1;
+    struct Node*tail=NULL;
 
-  void insertFromEnd(int value)
-   {
-    
-     struct Node*newNode=NULL;
-     struct Node*temp=NULL;
+    do
+     {
+      
+       printf("\nEnter coefficient: ");
+       scanf("%d",&coefficient);
+       printf("\nEnter exponent: ");
+       scanf("%d",&exponent);
+       struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+       newNode->coefficient=coefficient;
+       newNode->exponent=exponent;
+       newNode->next=NULL;
 
-        temp=start;
-        newNode = (struct Node*)malloc(sizeof(struct Node));
-        newNode->data=value;
-   
-        if(start==NULL)
+       if(*start==NULL)
          {
-           start=newNode;
-           newNode->next=NULL;
-           printf("New node successfully inserted!");
-           return;
+          *start=newNode;
+          tail=newNode;
          }
-   
-        while(temp->next!=NULL)
+
+       else 
         {
-            temp=temp->next;
-        }
-        temp->next=newNode;
-        newNode->next=NULL;
+          tail->next=newNode;
+          tail=newNode;
+        }  
+      
+      printf("\nEnter '1' to continue, other keys to exit: ");
+      scanf("%d",&choice);
+           
+     } while (choice==1);
     
-        printf("New node successfully inserted!");  
    }
 
+void addList()
+{
+    struct Node*ptr1=start1;
+    struct Node*ptr2=start2;
+    struct Node*tail=NULL;
 
-  void insertAtPosition(int value,int position)
-   {
-     struct Node*newNode = NULL;
-     struct Node*temp=NULL;
-     struct Node*temp2=NULL;
-     int i=0;
-     temp=start;
-     newNode = (struct Node*)malloc(sizeof(struct Node));
-     newNode->data=value;
-     if(start==NULL)
-      {
-        start=newNode;
+    while(ptr1!=NULL && ptr2!=NULL)
+     {
+        struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
         newNode->next=NULL;
-        printf("New node successfully inserted!");
-        return;
-      }
-     
-     while(i<position-1)
-      {
-        temp=temp->next;
-        i++;
-      }
-     temp2=temp->next;
-     temp->next=newNode;
-     newNode->next=temp2;
-     printf("New node successfully inserted!");
-   }
 
-  int middleElement()
-   {
-      struct Node*fast=start;
-      struct Node*slow=start;
+        if(ptr1->exponent > ptr2->exponent)
+         {
+            newNode->exponent=ptr1->exponent;
+            newNode->coefficient=ptr1->coefficient;
+            ptr1=ptr1->next;
+         }
 
-      while(fast!=NULL && fast->next!=NULL)
-       {
-         fast=fast->next->next;
-         slow=slow->next;
-       }
+        else if(ptr1->exponent < ptr2->exponent)
+         {
+            newNode->exponent=ptr2->exponent;
+            newNode->coefficient=ptr2->coefficient;
+            ptr2=ptr2->next;
+         }
 
-       return slow->data;
-   }
+        else //if both exponents are same
+         {
+            newNode->exponent=ptr1->exponent;
+            newNode->coefficient=ptr1->coefficient+ptr2->coefficient;
+            ptr1=ptr1->next;
+            ptr2=ptr2->next;
+         }
+
+        if(start3==NULL)
+         {
+            start3=newNode;
+            tail=newNode;
+         }
+        else
+         {
+            tail->next=newNode;
+            tail=newNode;
+         }
+    }
+
+    //add the remaining terms of the longer polynomial
+    while(ptr1!=NULL)
+     {
+        struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+        newNode->exponent=ptr1->exponent;
+        newNode->coefficient=ptr1->coefficient;
+        newNode->next=NULL;
+
+        tail->next=newNode;
+        tail=newNode;
+
+        ptr1=ptr1->next;
+     }
+
+    while(ptr2!=NULL)
+     {
+        struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+        newNode->exponent=ptr2->exponent;
+        newNode->coefficient=ptr2->coefficient;
+        newNode->next=NULL;
+
+        tail->next=newNode;
+        tail=newNode;
+
+        ptr2=ptr2->next;
+     }
+}
+
+void multiplyList()
+{
+    struct Node* ptr1 = start1;
+    struct Node* ptr2 = start2;
+  //  struct Node* start3 = NULL;
+    struct Node* tail = NULL;
+    int exponent=0;
+    int coefficient=0;
+
+    while (ptr1 != NULL)
+     {
+        ptr2 = start2;
+        while (ptr2 != NULL)
+         {
+             exponent = ptr1->exponent + ptr2->exponent;
+             coefficient = ptr1->coefficient * ptr2->coefficient;
+
+            // check if a node with the same exponent already exists
+            struct Node* temp = start3;
+            while (temp != NULL && temp->exponent != exponent)
+                temp = temp->next;
+            
+
+            if (temp != NULL)
+             {
+                // node with the same exponent already exists, add the coefficient
+                temp->coefficient += coefficient;
+             }
+           
+            else
+             {
+                // create a new node
+                struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+                newNode->exponent = exponent;
+                newNode->coefficient = coefficient;
+                newNode->next = NULL;
+
+                if (start3 == NULL)
+                 {
+                    start3 = newNode;
+                    tail = newNode;
+                 }
+
+                else
+                 {
+                    tail->next = newNode;
+                    tail = newNode;
+                 }
+             }
+
+            ptr2 = ptr2->next;
+         }
+
+        ptr1 = ptr1->next;
+     }
+
+}

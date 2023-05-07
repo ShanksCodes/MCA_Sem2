@@ -186,6 +186,7 @@ int main()
         }
     
       newNode->next=tail->next;
+      tail->next->prev=newNode;
       tail->next=newNode;
       newNode->prev=tail;
       tail=newNode;

@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#define MAX_SIZE 50
 
-int TOP=-1;
 
 struct Node{
     int data;
+    struct Node*next;
 };
 
 
-struct Node stackNode[MAX_SIZE];
+struct Node*TOP=NULL;
 
 void printStack();
 void pushStack(int value);
@@ -18,12 +17,12 @@ int popStack();
 int peekStack();
 int lengthOfStack();
 
-
 int main()
  {
     
     int element =0;
     int choice=0;
+    int size=-1;
 
    
   do{
@@ -58,7 +57,11 @@ int main()
        case 4: printf("\nElement on top of stack. Value: %d", peekStack());
                break;
 
-       case 5: printf("\nLength of the stack: %d",lengthOfStack());
+       case 5: size= lengthOfStack();
+               if(size==-1)
+                  printf("\nStack is empty!");
+               else
+                printf("\nLength of the stack: %d",size);
                break;
 
        case -1: break;
@@ -81,58 +84,79 @@ int main()
 
  void printStack()
   {
-     int i=TOP;
+     struct Node*temp=TOP;
 
-     while(i>=1)
+     if(TOP==NULL)
        {
-        printf("%d->", stackNode[i].data);
-        --i;
+         printf("\nLinked list is empty.\n");
+         return;
        }
-     printf("%d",stackNode[i].data);     
+
+     while(temp->next!=NULL) //usually it is temp->NULL as per standards, but change is to print -> effectively
+      {
+          printf("%d --> ",temp->data);
+          temp=temp->next;
+      }
+
+     printf("%d",temp->data);
+     temp=temp->next;
   }
 
  
  void pushStack(int value)
   {
-     if(TOP==MAX_SIZE-1) 
-        printf("\nStack overflow. Cannot push onto stack!");
-               
-     else
-       {
-        stackNode[++TOP].data = value;
-        printf("\nSuccessfullly inserted onto stack!");
-       }
-   
+      struct Node*newNode = (struct Node*)malloc(sizeof(struct Node)); 
+
+      newNode->data=value;
+      newNode->next=TOP;
+      TOP=newNode;
+
+      printf("\nNew node successfully pushed!");              
   }
 
   int popStack()
    {
-     int val=-1;
-     if(TOP==-1)
+      
+      int val=0;
+      if(TOP==NULL)
+       {
+         printf("\nStack is empty!\n");
+         return -1;
+       }
+
+      struct Node*temp=NULL;
+      temp=TOP;
+      val=temp->data;
+      TOP=TOP->next;
+      free(temp);
+      return val;
+   }
+
+ int peekStack()
+  {
+    if(TOP==NULL)
       {
         printf("\nStack is empty");
         return -1;
       }
 
-     else
-      val= stackNode[TOP--].data;
-     return val;
-   }
-
- int peekStack()
-  {
-    if(TOP==-1)
-      {
-        printf("\nStack underflow. Cannot pop from stack");
-        return -1;
-      }
-
-     else
-      return stackNode[TOP].data;
+    return TOP->data;
   }
 
   int lengthOfStack() 
    {
-     return TOP+1;
+     struct Node*temp=TOP;
+     int counter=0;
+     if(TOP==NULL)
+        return -1;
+
+      
+     while(temp!=NULL)
+      {
+        counter++;
+        temp=temp->next;
+      }
+
+      return counter;
    }
    
