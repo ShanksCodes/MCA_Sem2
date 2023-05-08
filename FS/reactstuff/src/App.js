@@ -1,10 +1,11 @@
 
 import './App.css';
 
-function App() {
+function App() {   //react follows PascalCase for function names
   return (
  <div>Hello World</div>
   );
 }
+
 
 export default App;
