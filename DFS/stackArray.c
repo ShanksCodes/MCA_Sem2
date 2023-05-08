@@ -16,6 +16,7 @@ void printStack();
 void pushStack(int value);
 int popStack();
 int peekStack();
+int searchElement(int);
 int lengthOfStack();
 
 
@@ -24,6 +25,7 @@ int main()
     
     int element =0;
     int choice=0;
+    int pos=-1;
 
    
   do{
@@ -33,7 +35,8 @@ int main()
     printf("2. Press 2 to push onto stack.\n");
     printf("3. Press 3 to pop from stack.\n");
     printf("4. Press 4 to peek stack.\n");
-    printf("5. Press 5 to find length of the stack:\n");
+    printf("5. Press 5 to search an element in stack\n");
+    printf("6. Press 6 to find length of the stack:\n");
 
     printf("-1. Press -1 to exit.\n");
     printf("\nEnter your choice: ");
@@ -57,8 +60,18 @@ int main()
                
        case 4: printf("\nElement on top of stack. Value: %d", peekStack());
                break;
+               
+       case 5: printf("\nEnter element to search in stack: ");
+               scanf("%d", &element);
+               pos = searchElement(element);
+              
+               if(pos==-1)
+                printf("\nElement not found in stack");
+               else  
+               printf("\nElement found at array index(0 based) %d ", searchElement(element));
+               break;
 
-       case 5: printf("\nLength of the stack: %d",lengthOfStack());
+       case 6: printf("\nLength of the stack: %d",lengthOfStack());
                break;
 
        case -1: break;
@@ -131,8 +144,21 @@ int main()
       return stackNode[TOP].data;
   }
 
+ int searchElement(int value)
+  {
+    int i=TOP;
+    while(i-->=0)
+     {
+       if(stackNode[i].data==value)
+        return i;       
+     }
+
+     return -1;
+  } 
+
   int lengthOfStack() 
    {
      return TOP+1;
    }
    
+
