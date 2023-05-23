@@ -1,44 +1,26 @@
-export function FunCompEx(props)
- {
-    return(
-    <div>
-    <h1>This is one of the components created by {props.nm} at {props.at}</h1>       
-    </div>)
- }
-
-
-export function Login()
-  {
-    return(
-    <form>
-       
-    <h1>Abhi.com</h1>
-    <input placeholder="Enter Your Name" type="text" name="name" id="name" />
-    <input
-    placeholder="Enter Your Email"
-    type="email"
-    name="email"
-    id="email"
-    />
-   
-   <input
-    placeholder="Enter Your Password"
-    type="password"
-    name="password"
-    id="password"
-  />
-
-   <input type="submit" value="Login" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+  </head>
+  <style>
+    table,
+    th,
+    td ,tr{
+      border: 2px;
+      border-style: solid;
+      border-collapse: collapse;
+      /* width: 10px; */
+    }
     
-    </form>)
-  }
+  </style>
 
-
-  export const FormA =()=>{
-    return(
-      <div>
-      <form>
-      <br/>
+  <body>
+    <form action="action.php">
+      <br>
       <div>Name: <input type="text" name="myName" /></div>
       <br />
       <div>Email: <input type="email" name="myEmail" /></div>
@@ -47,9 +29,9 @@ export function Login()
       <div>
         <textarea name="myAddress" rows="10" cols="40"></textarea>
       </div>
-      <br/>
+      <br>
       <div>
-        Post code: <input type="text" name="code"/>
+        Post code: <input type="text" name="code">
       </div>
       <h3>Product details </h3>
 
@@ -64,10 +46,10 @@ export function Login()
 
         <tr>
           <td>.</td> 
-          <td><input type="text"/></td>
-          <td><input type="number"/></td>
-          <td><input type="number"/></td>
-          <td><input type="text"/></td>
+          <td><input type="text"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="text"></td>
         </tr>
         <tr>
             <td>Standard Box</td>
@@ -109,11 +91,11 @@ export function Login()
       <h4>Card type:</h4>
       <input type="radio" name="Card" value="Master Card" />Master card  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-      Card Number: <input type="text" name="card NUmber" />   <br/>
+      Card Number: <input type="text" name="card NUmber" >   <br>
 
       <input type="radio" name="Card" value="Visa" /> Visa   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 
-      Expiry Date: &nbsp; <input type="date" name="expiry date" /> <br/>
+      Expiry Date: &nbsp; <input type="date" name="expiry date" > <br>
     
       <input type="radio" name="Card" value="American Express" /> American
       Express<br />
@@ -123,11 +105,9 @@ export function Login()
       <div>
         <textarea name="newAddress" rows="10" cols="40"></textarea>
       </div>
-      <br/>
+      <br />
       <input type="button" value="Send Order" />
       <input type="reset" value="Clear Form" />
     </form>
-
-    </div>
-    )
-  }
+  </body>
+</html>
