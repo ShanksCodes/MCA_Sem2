@@ -36,7 +36,7 @@ export function Login()
 
   export const FormA =()=>{
     return(
-      <div>
+
       <form>
       <br/>
       <div>Name: <input type="text" name="myName" /></div>
@@ -52,8 +52,8 @@ export function Login()
         Post code: <input type="text" name="code"/>
       </div>
       <h3>Product details </h3>
-
-      <table>
+      
+<table>
         <tr>
           <th>Product</th>
           <th>Part Number</th>
@@ -105,6 +105,8 @@ export function Login()
       </table>
 
 
+
+      
       <h3>Credit Card Details</h3>
       <h4>Card type:</h4>
       <input type="radio" name="Card" value="Master Card" />Master card  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -128,6 +130,6 @@ export function Login()
       <input type="reset" value="Clear Form" />
     </form>
 
-    </div>
+  
     )
   }
