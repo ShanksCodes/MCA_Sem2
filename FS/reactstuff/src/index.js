@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client';
 //import './login.css';
 import './formA.css';
 import {Login, FunCompEx, FormA} from './indexFunctions.js';
-import { Employee, Department, Car } from './classComponents';
+import { Employee, Department, Car, Propsexample } from './classComponents';
+
 
 
 
@@ -12,6 +13,7 @@ import { Employee, Department, Car } from './classComponents';
 
 
 const element=<Employee Name="Pragim" DeptName="Dev"/>
+const carElement = <Car brand="BMW"/>
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -20,6 +22,9 @@ root.render(
    {/*<Login/>*/}
    {/*<FormA/>*/}
    {/*element*/}
+   {/*carElement*/} 
+   {<Propsexample/>}
+
 
    
   </React.StrictMode>
