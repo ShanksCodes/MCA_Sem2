@@ -9,11 +9,10 @@ struct Node{
 };
 
 
-struct Node*TOP1=NULL;
-struct Node*TOP2=NULL;
+struct Node*TOP=NULL;
 
 void printStack();
-void pushStack(int value, struct Node*);
+void pushStack(int value);
 int popStack();
 int peekStack();
 int searchElement(int);
@@ -95,22 +94,6 @@ int main()
     return 0;
  }
 
-
-void enqueue(int value)
- {
-    int poppedVal = 0;
-    TOP2 = NULL;
-    pushStack(value, TOP1);
-    while(!isEmpty())
-     {
-       poppedVal = popStack();
-       pushStack(poppedVal, TOP2);
-
-     }  
-
- }
-
-
  void printStack()
   {
      struct Node*temp=TOP;
@@ -132,7 +115,7 @@ void enqueue(int value)
   }
 
  
- void pushStack(int , struct Node*)
+ void pushStack(int value)
   {
       struct Node*newNode = (struct Node*)malloc(sizeof(struct Node)); 
 
@@ -207,4 +190,3 @@ void enqueue(int value)
 
       return counter;
    }
-   
