@@ -62,7 +62,9 @@ int main()
                 printf("\nElement popped. Value: %d", element);
                break;       
                
-       case 4: printf("\nElement at top of stack: %d", peekStack());
+       case 4: element = peekStack();
+               if(element!=-1)
+                printf("\nElement at top of stack: %d", element);
                break;       
       
        case 5: printf("\nEnter element to search in stack: ");

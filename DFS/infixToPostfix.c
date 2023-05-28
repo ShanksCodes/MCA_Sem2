@@ -14,6 +14,7 @@ char popStack();
 char peekStack();
 int isOperator(char ch);
 int precedence(char op);
+int isLeftAssociative(char op) ;
 void infixToPostfix(char* infix, char* postfix);
 
 int main() {
@@ -89,6 +90,14 @@ int precedence(char op)
     return 0;
  }
 
+int isLeftAssociative(char op) 
+ {
+    if (op == '^')
+        return 0;  // Right associative
+
+    return 1;      // Left associative
+ }
+
 
 void infixToPostfix(char* infix, char* postfix) 
  {
@@ -117,8 +126,10 @@ void infixToPostfix(char* infix, char* postfix)
 
         else if (isOperator(infix[i])) 
          {
-            while (TOP != NULL && peekStack() != '(' && precedence(infix[i]) <= precedence(peekStack())) 
-                postfix[j++] = popStack();
+            while (TOP != NULL && peekStack() != '(' && (precedence(infix[i]) < precedence(peekStack()) 
+                   ||
+                  (precedence(infix[i]) == precedence(peekStack()) && isLeftAssociative(infix[i]))))
+                     postfix[j++] = popStack();
             
             pushStack(infix[i]);
          }

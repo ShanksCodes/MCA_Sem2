@@ -59,7 +59,9 @@ int main()
                 printf("\nElement dequeue. Value: %d", element);
                break;       
                
-       case 4: printf("\nElement in the front of queue: %d", peekQueue());
+       case 4: element = peekQueue();
+               if(element!=-1)
+                printf("\nElement in the front of queue: %d", element);
                break;
                
        case 5: printf("\nEnter element to search in queue: ");
