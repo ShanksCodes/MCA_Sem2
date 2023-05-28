@@ -237,6 +237,6 @@ int main()
         temp=temp->next;
         temp2=temp2->next;
       }
-      reverseHalf(middle);  //reconverting to original list
+     middle->next = reverseHalf(middle);  //reconverting to original list
      return 1;
    }
