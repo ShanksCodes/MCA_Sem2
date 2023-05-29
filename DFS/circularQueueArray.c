@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#define MAX_SIZE 50
+#define MAX_SIZE 5
 
 int FRONT=-1;
 int REAR=-1;
@@ -59,9 +59,7 @@ int main()
                 printf("\nElement dequeue. Value: %d", element);
                break;       
                
-       case 4: element = peekQueue();
-               if(element!=-1)
-                printf("\nElement in the front of queue: %d", element);
+       case 4: printf("\nElement in the front of queue: %d", peekQueue());
                break;
                
        case 5: printf("\nEnter element to search in queue: ");
@@ -99,16 +97,16 @@ int main()
   {
      int i=FRONT;
 
-     if(FRONT==-1 || FRONT>REAR)
+     if(FRONT==-1 && REAR==-1)
       {
         printf("\nQueue is empty");
         return;
       }
 
-     while(i<REAR)
+     while(i!=REAR)
        {
         printf("%d->", queueNode[i].data);
-        ++i;
+        i = (i+1)%MAX_SIZE;
        }
 
      printf("%d", queueNode[i].data);     
@@ -117,7 +115,7 @@ int main()
  
  void enqueue(int value)
   {
-     if(REAR==MAX_SIZE-1) 
+     if((REAR+1)%MAX_SIZE==FRONT) 
         printf("\nQueue overflow. Cannot enqueue!");
 
      else if(FRONT==-1 && REAR==-1)
@@ -129,7 +127,8 @@ int main()
                
      else
        {
-        queueNode[++REAR].data = value;
+        REAR = (REAR+1)%MAX_SIZE;
+        queueNode[REAR].data = value;
         printf("\nSuccessfullly enqued!");
        }
    
@@ -138,28 +137,30 @@ int main()
   int dequeue()
    {
      int val=-1;
-     if(FRONT==-1 || FRONT>REAR)
+     if(FRONT==-1 && REAR==-1)
       {
         printf("\nQueue is empty");
         return -1;
       }
-
+     
      else if(FRONT==REAR)
       {
-        val = queueNode[FRONT].data;
-        FRONT=-1;
-        REAR=-1;
-      } 
-      
+       val=queueNode[FRONT].data;
+       FRONT=-1;
+       REAR=-1;
+      }
 
      else
-      val= queueNode[FRONT++].data;
+      {
+       val=queueNode[FRONT].data;
+       FRONT=(FRONT+1)%MAX_SIZE;
+      }
      return val;
    }
 
  int peekQueue()
   {
-    if(FRONT==-1 || FRONT>REAR)
+    if(FRONT==-1 && REAR==-1)
       {
         printf("\nQueue underflow. Cannot peek from queue");
         return -1;
@@ -172,21 +173,31 @@ int main()
  int searchElement(int value)
   {
     int i=FRONT;
-    while(i++<=REAR)
+    while(i!=REAR)
      {
        if(queueNode[i].data==value)
-        return i;       
+        return i; 
+
+       i = (i+1)%MAX_SIZE;      
      }
 
      return -1;
   } 
 
-  int lengthOfQueue() 
-   {
-     if(FRONT==-1 || FRONT>REAR)
-      return 0;
+ int lengthOfQueue()
+  {
+    if (FRONT == -1 && REAR == -1)
+      return 0; 
+    
+    else if (FRONT <= REAR)
+      return REAR - FRONT + 1; 
+    
+    else
+      return MAX_SIZE - FRONT + REAR + 1;
+  }
 
-     return REAR-FRONT+1;
-   }
-   
+
+
+
+
 

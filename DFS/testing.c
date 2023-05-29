@@ -1,24 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void foo();
 
  
-
+int x=5;
 int main()
 {
   printf("\n----------------------------------------------------------\n");
- int x=0;
 
- printf("\nhi");
- printf("wassup");
+  foo();
+  printf("%d",x);
 
- scanf("%d",&x);
- printf("%d",x);
-  printf("ggg");
 
 
   printf("\n----------------------------------------------------------\n");
   return 0;
+}
+
+void foo()
+{
+  x=10;
+  printf("%d",x);
 }
 
 

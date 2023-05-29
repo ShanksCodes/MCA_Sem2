@@ -14,26 +14,29 @@ char popStack();
 char peekStack();
 int isOperator(char ch);
 int precedence(char op);
-int isLeftAssociative(char op) ;
-void infixToPostfix(char* infix, char* postfix);
+int isLeftAssociative(char op);
+void infixToPrefix(char* infix, char* prefix);
+void reverseString(char* str);
+void swapParentheses(char* str);
 
 int main() {
     printf("----------------------------------------------------------\n\n");
     /* 
-    sample input: ((A+B)*C-D)*E^F/G+H
-    expected output: AB+C*D-E^F/G*+H+
+    sample input: K + L - M * N + (O^P) * W/U/V * T + Q
+    expected output: ++-+K  L * M  N *//* ^OP  WUV  T  Q  
     */
     char infix[100], postfix[100];
     printf("Enter infix expression: ");
     fgets(infix, 100, stdin);
 
     infix[strcspn(infix, "\n")] = '\0';
-    infixToPostfix(infix, postfix);
-    printf("The postfix expression is: %s\n", postfix);
+    infixToPrefix(infix, postfix);
+    printf("The prefix expression is: %s\n", postfix);
 
     printf("\n----------------------------------------------------------\n\n");
     return 0;
 }
+
 
 void pushStack(char value) 
  {
@@ -56,35 +59,34 @@ char popStack()
     TOP = TOP->next;
     free(temp);
     return val;
-}
+ }
 
 char peekStack() 
  {
-    if (TOP == NULL) 
-     {
+    if (TOP == NULL) {
         printf("Stack is empty!\n");
         return '\0';
-     }
+    }
     return TOP->data;
  }
 
 int isOperator(char ch) 
-  {
-    if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') 
-     return 1;
-    
+ {
+    if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')
+        return 1;
+
     return 0;
-  }
+ }
 
 int precedence(char op) 
  {
-    if (op == '^') 
-        return 3;
-    
-    else if (op == '*' || op == '/') 
+    if (op == '^')
+        return 4;
+
+    else if (op == '*' || op == '/')
         return 2;
-    
-    else if (op == '+' || op == '-') 
+
+    else if (op == '+' || op == '-')
         return 1;
 
     return 0;
@@ -98,47 +100,45 @@ int isLeftAssociative(char op)
     return 1;      // Left associative
  }
 
-
-void infixToPostfix(char* infix, char* postfix) 
+void infixToPrefix(char* infix, char* prefix) 
  {
     int i, j;
     char ch;
-    
+
+    reverseString(infix);
+    swapParentheses(infix);
+
     for (i = 0, j = 0; infix[i] != '\0'; i++) 
      {
-        if (infix[i] == '(') 
-         pushStack(infix[i]);
-        
+        if (infix[i] == '(')
+            pushStack(infix[i]);
 
         else if (infix[i] == ')') 
          {
-            while (TOP != NULL && peekStack() != '(') 
-                postfix[j++] = popStack();
-            
-            if (TOP == NULL) 
-             {
+            while (TOP != NULL && peekStack() != '(')
+                prefix[j++] = popStack();
+
+            if (TOP == NULL)
+              {
                 printf("Invalid expression: Unbalanced parentheses!\n");
                 return;
-             }
+              } 
             popStack();
-         }
-
+        }
 
         else if (isOperator(infix[i])) 
          {
-            while (TOP != NULL && peekStack() != '(' && (precedence(infix[i]) < precedence(peekStack()) 
-                   ||
-                  (precedence(infix[i]) == precedence(peekStack()) && isLeftAssociative(infix[i]))))
-                     postfix[j++] = popStack();
+            while (TOP != NULL && peekStack() != '(' && (precedence(infix[i]) < precedence(peekStack()) ||
+                  (precedence(infix[i]) == precedence(peekStack()) && (!isLeftAssociative(infix[i]))))) 
+                prefix[j++] = popStack();
             
+
             pushStack(infix[i]);
          }
 
-
-        else 
-         postfix[j++] = infix[i];
-        
-    }
+        else
+            prefix[j++] = infix[i];
+     }
 
     while (TOP != NULL) 
      {
@@ -148,8 +148,37 @@ void infixToPostfix(char* infix, char* postfix)
             return;
          }
 
-        postfix[j++] = popStack();
-     }
+        prefix[j++] = popStack();
+    }
 
-    postfix[j] = '\0';
- }
+    prefix[j] = '\0';
+
+    reverseString(prefix);
+}
+
+void reverseString(char* str) 
+ {
+    int length = strlen(str);
+    int i, j;
+
+    for (i = 0, j = length - 1; i < j; i++, j--) 
+     {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+     }
+}
+
+void swapParentheses(char* str) 
+ {
+    int i;
+    char ch;
+
+    for (i = 0; str[i] != '\0'; i++) 
+     {
+        if (str[i] == '(')
+            str[i] = ')';
+        else if (str[i] == ')')
+            str[i] = '(';
+     }
+}

@@ -102,7 +102,7 @@ int main()
 
      if(HEAD==NULL)
        {
-         printf("\nLinked list is empty.\n");
+         printf("\nQueueis empty.\n");
          return;
        }
 
@@ -122,15 +122,18 @@ int main()
       struct Node*newNode = (struct Node*)malloc(sizeof(struct Node));
      
       newNode->data=value;
+      newNode->next = NULL;
      
       if(!HEAD)
        {
          HEAD = newNode;
          TAIL = newNode;
        }
-      TAIL->next = newNode;
-      TAIL = newNode;
-     
+      else
+       { 
+        TAIL->next = newNode;
+        TAIL = newNode;
+       }
       printf("\nNew node successfully enqueued!");              
   }
 
