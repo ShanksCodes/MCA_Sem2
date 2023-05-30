@@ -2,20 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 //import App from './App';
 //import './login.css';
-import './salarycss.css';
+import './salary.css';
 import './formA.css';
-import {Login, FunCompEx, FormA} from './indexFunctions.js';
-import { Employee, Department, Car, Propsexample } from './classComponents';
+//import {Login, FunCompEx, FormA} from './indexFunctions.js';
+//import { Employee, Department, Car, Propsexample } from './classComponents';
 import { SalaryCalculator } from './salaryComps';
 
 
 
-
-
-
-
-const element=<Employee Name="Pragim" DeptName="Dev"/>
-const carElement = <Car brand="BMW"/>
+//const element=<Employee Name="Pragim" DeptName="Dev"/>
+//const carElement = <Car brand="BMW"/>
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -27,8 +23,6 @@ root.render(
    {/*carElement*/} 
    {/*<Propsexample/>*/}
    {<SalaryCalculator/>}
-
-
-   
+ 
   </React.StrictMode>
 );
