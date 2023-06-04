@@ -11,13 +11,13 @@ struct Node{
 struct Node*root=NULL;
 
 int isEmpty();
-struct Node* makeTree();
+struct Node* insertion(struct Node*, int);
+struct Node* minValueNode(struct Node*);
+struct Node* deletion(struct Node*, int); 
+int searchElement(struct Node*, int);
 void inorderTraversal(struct Node*ptr);
 void preorderTraversal(struct Node*ptr);
 void postorderTraversal(struct Node*ptr);
-int numberOfNodes(struct Node*ptr);
-int treeHeight(struct Node*ptr);
-int searchElement(struct Node*ptr, int element);
 
 int main()
  {
@@ -30,14 +30,12 @@ int main()
   do{
     
     printf("\n----------------------------------------------------------\n\n");
-    printf("1. Press 1 to create the tree.\n");
+    printf("1. Press 1 to for insertion into Binary Search Tree.\n");
     printf("2. Press 2 for preorder traversal.\n");
     printf("3. Press 3 for inorder traversal.\n");
     printf("4. Press 4 for postorder traversal.\n");
-    printf("5. Press 5 to check if the tree is empty.\n");
-    printf("6. Press 6 to count the number of nodes:\n");
-    printf("7. Press 7 to find the height of the tree:\n");
-    printf("8. Press 8 to search an element in binary tree:\n");
+    printf("5. Press 5 for deletion Binary Search Tree.\n");
+    printf("6. Press 8 to search an element in binary tree:\n");
 
     printf("-1. Press -1 to exit.\n");
     printf("\nEnter your choice: ");
@@ -45,9 +43,12 @@ int main()
 
     switch(choice)
      {
-       case 1: printf("\nCreating binary tree...\n");
-               root = makeTree(element);
-               break;
+       
+       case 1: printf("\nInsertion into binary search tree...\n");
+                printf("Enter element to insert: ");
+                scanf("%d", &element);
+                root = insertion(root, element);
+                break;
 
        case 2: printf("\nPreoder treversal of tree:\n");
                if(isEmpty())
@@ -56,6 +57,7 @@ int main()
                   break;
                 }
                preorderTraversal(root);
+               printf("\n----Root Value(testing): %d\n",root->data);
                break;
 
        case 3: printf("\nInorder treversal of tree:\n");
@@ -65,6 +67,7 @@ int main()
                   break;
                 }
                inorderTraversal(root);
+               printf("\n----Root Value(testing): %d\n",root->data);
                break;
        
        case 4: printf("\nPostoder treversal of tree:\n");
@@ -74,27 +77,23 @@ int main()
                   break;
                 }
                postorderTraversal(root);
+               printf("\n----Root Value(testing): %d\n",root->data);
                break;      
       
-       case 5: if(isEmpty())
+       case 5: printf("\nDeletion in binary tree...\n");
+               if(isEmpty())
                 printf("\nTree is empty!");
                else
-                printf("\nTree is not empty!");
+                { 
+                   printf("\nEnter element to delete: ");
+                   scanf("%d",&element);
+                   root = deletion(root, element);
+                   printf("\n----Root Value(testing): %d\n",root->data);
+                }
                break;
-                       
+            
+
        case 6: if(isEmpty())
-                printf("\nTree is empty!");
-               else
-                printf("\nNumber of nodes in the binary tree: %d",numberOfNodes(root));
-               break;
-
-       case 7: if(isEmpty())
-                printf("\nTree is empty!");
-               else
-                printf("\nHeight of the binary tree: %d", treeHeight(root));
-               break;
-
-       case 8: if(isEmpty())
                 {
                   printf("\nTree is empty!");
                   break;
@@ -139,24 +138,26 @@ int main()
                   1   3 5   7
 */
    
-  struct Node* makeTree()
-   {
-     int val;
-     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-     printf("\nEnter data(-1 for no node): ");
-     scanf("%d",&val);
-     if(val==-1)
-      return NULL;
-  
-     newNode->data = val;
-  
-     printf("\nEnter left child of %d: ",val);
-     newNode->left = makeTree();                                
-  
-     printf("\nEnter right child of %d: ",val);
-     newNode->right = makeTree();
-     return newNode; 
-   }
+struct Node* insertion(struct Node* root, int data)
+ {
+    if (root == NULL) 
+     {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->left = NULL;
+        newNode->right = NULL;
+        return newNode;
+     }
+
+    if (data < root->data) 
+        root->left = insertion(root->left, data);
+    
+    else if (data > root->data) 
+        root->right = insertion(root->right, data);
+    
+    return root;
+ }
+
 
   void preorderTraversal(struct Node*ptr)
   {     
@@ -190,39 +191,64 @@ void postorderTraversal(struct Node* ptr)
     printf("%d -> ", ptr->data);
  }
 
-int numberOfNodes(struct Node* ptr)
+struct Node* deletion(struct Node* root, int data)
  {
-    if (ptr == NULL)
-      return 0;
-    else
-      return 1 + numberOfNodes(ptr->left) + numberOfNodes(ptr->right);
- }    
-
-
-int treeHeight(struct Node* ptr) 
-  {
+    if (root == NULL) 
+        return root;
     
-    if (ptr == NULL)
-      return 0;
+
+    if (data < root->data) 
+        root->left = deletion(root->left, data);
+    
+    else if (data > root->data) 
+        root->right = deletion(root->right, data);
+    
     else 
      {
-      int leftHeight = treeHeight(ptr->left);
-      int rightHeight = treeHeight(ptr->right);
-      return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
-     }
-  }
+        if (root->left == NULL) 
+         {
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+         }
+        else if (root->right == NULL) 
+         {
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+         }
 
-int searchElement(struct Node* ptr, int element) 
+        struct Node* temp = minValueNode(root->right);
+        root->data = temp->data;
+        root->right = deletion(root->right, temp->data);
+     }
+
+    return root;
+}
+
+struct Node* minValueNode(struct Node* node)
+ {
+    struct Node* current = node;
+
+    while (current && current->left != NULL) 
+        current = current->left;
+    
+    return current;
+ }
+
+int searchElement(struct Node* ptr, int data)
  {
     if (ptr == NULL)
-        return 0;
-    else if (ptr->data == element)
-        return 1;
-    else 
-     {
-        int foundLeft = searchElement(ptr->left, element);
-        int foundRight = searchElement(ptr->right, element);
-        return foundLeft || foundRight;
-     }
-} 
+        return 0;  
+
+    if (data == ptr->data)
+        return 1; 
+
+    if (data < ptr->data)
+        return searchElement(ptr->left, data);  
+
+    return searchElement(ptr->right, data);  
+ }
+
+
 

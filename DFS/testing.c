@@ -3,14 +3,19 @@
 
 void foo();
 
+struct Node
+ {
+  int data;
+  struct Node*next;
+ }
  
 int x=5;
 int main()
 {
   printf("\n----------------------------------------------------------\n");
 
-  foo();
-  printf("%d",x);
+ struct Node*root=NULL;
+ free(root);
 
 
 
