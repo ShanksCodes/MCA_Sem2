@@ -1,0 +1,17 @@
+
+<div class="container">
+<div class="form-container">
+  <h2>Home Loan</h2>
+  <label>Loan Amount:</label>
+  <input type="number" [(ngModel)]="loanAmount"><br><br>
+
+  <label>Loan Term (in months):</label>
+  <input type="number" [(ngModel)]="loanTerm"><br><br>
+
+  <label>Interest:</label>
+  <input type="text" value="15%" readonly><br><br>
+
+  <label>EMI:</label>
+  <input type="text" [value]="calculateEMI()" default="0" readonly><br><br>
+  
+</div></div>

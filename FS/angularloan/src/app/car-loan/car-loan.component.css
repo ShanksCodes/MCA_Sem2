@@ -1,0 +1,29 @@
+/* car-loan.component.css */
+
+h2 {
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.form-container {
+  background-color: #eef4fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  width: 40%;
+  margin:auto;
+}
+
+
+
+.form-container input[type="number"],
+.form-container input[type="text"] {
+  background-color: #fff;
+}
+
+.form-container input[readonly] {
+  background-color: #f7f7f7;
+}
