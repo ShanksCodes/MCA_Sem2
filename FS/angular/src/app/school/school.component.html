@@ -1,6 +1,32 @@
 <p>school works!</p>
 
-<div style="border: 1px solid black">
-    <p>yooo</p>
-
+<div style="background-color: powderblue;">
+  <h3>This is a heading from the school component</h3>
+  <p>Hello {{ name }}, your marks are {{ marks }}</p>
+  <table>
+    <tr>
+      <th>Maths</th>
+      <td><input type="number" [(ngModel)]="math"></td>
+    </tr>
+    <tr>
+      <th>English</th>
+      <td><input type="number" [(ngModel)]="eng"></td>
+    </tr>
+    <tr>
+      <th>Physics</th>
+      <td><input type="number" [(ngModel)]="phy"></td>
+    </tr>
+    <tr>
+      <th>Chemistry</th>
+      <td><input type="number" [(ngModel)]="chem"></td>
+    </tr>
+    <tr>
+      <th>Computer Science</th>
+      <td><input type="number" [(ngModel)]="cs"></td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>{{ calculateTotal() }}</td>
+    </tr>
+  </table>
 </div>
