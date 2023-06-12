@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './salary.css';
 
 export const SalaryCalculator = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');

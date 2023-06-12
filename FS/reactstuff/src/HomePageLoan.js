@@ -1,4 +1,34 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
+import './HomePageLoan.css';
+
+const Home = () => {
+  return (
+    <div className="form-container">
+      <h1 style={{ textAlign: 'center', color: 'rgb(59, 87, 68)' }}>Loan Calculator</h1>
+      <ul>
+        <li>
+          <Link to="/car-loan">Car Loan</Link>
+        </li>
+        <li>
+          <Link to="/home-loan">Home Loan</Link>
+        </li>
+        <li>
+          <Link to="/tax-calculator">Tax Calculator</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Home;
+
+
+
+/*import { Link } from 'react-router-dom';
 import './HomePageLoan.css'
 
 const Home = () => {
@@ -17,7 +47,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home;*/
 
 /*import React from 'react';
 import './HomePageLoan.css'
