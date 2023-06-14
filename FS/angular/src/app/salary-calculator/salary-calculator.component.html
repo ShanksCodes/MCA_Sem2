@@ -1,0 +1,89 @@
+<div class="data">
+    <h2 class="heading">Salary calculator</h2>
+    <br />
+  
+    <label class="label">
+      Employee Number:
+      <input
+        type="text"
+        name="employeeNumber"
+        class="input"
+        [(ngModel)]="employeeNumber"
+        (ngModelChange)="handleInputChange($event)"
+      />
+      <br />
+    </label>
+    <br />
+  
+    <label class="label">
+      Name:
+      <input
+        type="text"
+        name="name"
+        class="input"
+        [(ngModel)]="name"
+        (ngModelChange)="handleInputChange($event)"
+      />
+      <br />
+    </label>
+    <br />
+  
+    <label class="label">
+      Salary:
+      <input
+        type="number"
+        name="salary"
+        class="input"
+        [(ngModel)]="salary"
+        (ngModelChange)="handleInputChange($event)"
+      />
+      <br />
+    </label>
+    <br />
+    <br />
+  
+    <button class="button" (click)="computeGrossSalary()">Compute Gross Salary</button>
+    <br />
+    <br />
+  
+    <div *ngIf="grossSalary !== null">
+      <label class="result-label">
+        TA: <span class="result-value">{{ ta }}</span>
+      </label>
+      <br />
+      <label class="result-label">
+        HRA: <span class="result-value">{{ hra }}</span>
+      </label>
+      <br />
+      <label class="result-label">
+        DA: <span class="result-value">{{ da }}</span>
+      </label>
+      <br />
+      <label class="result-label">
+        Gross Salary: <span class="result-value">{{ grossSalary }}</span>
+      </label>
+      <br />
+    </div>
+    <br />
+    <br />
+  
+    <button class="button" (click)="computeNetSalary()">Compute Net Salary</button>
+    <br />
+    <br />
+  
+    <div *ngIf="netSalary !== null">
+      <label class="result-label">
+        PT: <span class="result-value">{{ pt }}</span>
+      </label>
+      <br />
+      <label class="result-label">
+        Tax: <span class="result-value">{{ tax }}</span>
+      </label>
+      <br />
+      <label class="result-label">
+        Net Salary: <span class="result-value">{{ netSalary }}</span>
+      </label>
+      <br />
+    </div>
+  </div>
+  

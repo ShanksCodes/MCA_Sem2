@@ -1,0 +1,16 @@
+<h1>Angular First Application</h1>
+<p> Home Page</p>
+
+
+<nav>
+    <!--a routerLink="/">School</a><br-->
+    <a routerLink="/school">School</a><br>
+    <a routerLink="/students">Students</a><br>
+  </nav>
+  
+
+<router-outlet></router-outlet>
+<!--app-school></app-school>
+<app-students></app-students-->
+
+this is app.component.html
