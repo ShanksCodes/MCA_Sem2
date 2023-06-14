@@ -1,0 +1,57 @@
+.converter-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .input-group input[type='number'],
+  .input-group input[type='text'] {
+    flex: 2;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .input-group span {
+    margin-left: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .button-group button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .result-text {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

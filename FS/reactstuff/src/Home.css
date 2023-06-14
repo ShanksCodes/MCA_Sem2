@@ -1,0 +1,42 @@
+h1 {
+  color: rgb(59, 87, 68);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.form-container {
+  background-color: #eef4fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 600px;
+  margin: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  margin-top: 30px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+li a {
+  display: block;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+li a:hover {
+  background-color: #f2f2f2;
+}
