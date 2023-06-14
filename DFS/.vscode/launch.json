@@ -16,8 +16,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/PC17D280G1LAB1/Documents/AbhishekT/MCA_Sem2/DFS",
-      "program": "c:/Users/PC17D280G1LAB1/Documents/AbhishekT/MCA_Sem2/DFS/build/Debug/outDebug",
+      "cwd": "c:/Users/PC17D280G1LAB1/Documents/MCA_Sem2/DFS",
+      "program": "c:/Users/PC17D280G1LAB1/Documents/MCA_Sem2/DFS/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
