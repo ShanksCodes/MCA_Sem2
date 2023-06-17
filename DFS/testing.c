@@ -1,32 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void foo();
+void foo(int**arr);
 
-struct Node
- {
-  int data;
-  struct Node*next;
- }
- 
-int x=5;
+
 int main()
 {
   printf("\n----------------------------------------------------------\n");
 
- struct Node*root=NULL;
- free(root);
-
-
+    int **arr = (int **) calloc(10, sizeof(int *));
+    for (int i = 0; i < 10; i++) 
+        arr[i] = (int *) calloc(10, sizeof(int));
+ foo(arr);
+for(int i=0;i<3;i++)
+{
+  for(int j=0;j<3;j++)
+  {
+    printf("%d ",arr[i][j]);
+  }
+}
 
   printf("\n----------------------------------------------------------\n");
   return 0;
 }
 
-void foo()
+void foo(int**arr)
 {
-  x=10;
-  printf("%d",x);
+  arr[0][2]=100;
+
+  for(int i=0;i<3;i++)
+  {
+    for(int j=0;j<3;j++)
+    {
+      printf("%d ",arr[i][j]);
+    }
+  }
+
 }
 
 
