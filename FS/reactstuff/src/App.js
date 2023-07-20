@@ -11,6 +11,7 @@ import AcreToSquareFootConverter from './AcreToSquareFootConverter';
 import InchToCentimeterConverter from './InchToCentimeterConverter';
 import CentimeterToInchConverter from './CentimeterToInchConverter';
 import MeterToFootConverter from './MeterToFootConverter';
+//import { SalaryCalculator } from './salaryCompsFunc';
 
 
 
