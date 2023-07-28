@@ -18,6 +18,7 @@ int searchElement(struct Node*, int);
 void inorderTraversal(struct Node*ptr);
 void preorderTraversal(struct Node*ptr);
 void postorderTraversal(struct Node*ptr);
+void levelOrderTraversal(struct Node*ptr);
 
 int main()
  {
@@ -158,6 +159,32 @@ struct Node* insertion(struct Node* root, int data)
     return root;
  }
 
+
+void levelOrderTraversal(struct Node* root) {
+    // Create a queue using an array to keep track of the nodes
+    struct Node* queue[100];
+    int front = -1;
+    int rear = -1;
+
+    // Enqueue the root node to start traversal from it
+    queue[++rear] = root;
+
+    while (front != rear) {
+        // Dequeue a node and process it
+        struct Node* currentNode = queue[++front];
+        printf("%d -> ", currentNode->data);
+
+        // Enqueue the left child if it exists
+        if (currentNode->left) {
+            queue[++rear] = currentNode->left;
+        }
+
+        // Enqueue the right child if it exists
+        if (currentNode->right) {
+            queue[++rear] = currentNode->right;
+        }
+    }
+}
 
   void preorderTraversal(struct Node*ptr)
   {     
